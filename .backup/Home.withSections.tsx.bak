@@ -1,0 +1,125 @@
+import { Link } from "react-router-dom"
+import { ArrowRight, ClipboardList, Route, ShieldCheck, Headset } from "lucide-react"
+
+import { Button } from "@/components/ui/button"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
+import { Hero } from "@/components/sections/Hero"
+import { Section, SectionHeading } from "@/components/sections/Section"
+import { ServiceCard } from "@/components/sections/ServiceCard"
+import { CTASection } from "@/components/sections/CTASection"
+import { faqs, services } from "@/data/site"
+
+const steps = [
+  {
+    icon: ClipboardList,
+    title: "Send us the details",
+    body: "Origin, destination, commodity, and timing. One form, one reply — no phone tag with a call center.",
+  },
+  {
+    icon: Route,
+    title: "We build the routing",
+    body: "We price the realistic options across road, ocean, and air, and tell you which one we would actually book.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Cargo moves, cleared",
+    body: "Our brokers file the entry while the freight is in transit, so clearance is not the thing that holds you up.",
+  },
+  {
+    icon: Headset,
+    title: "You stay in the loop",
+    body: "Milestone tracking in the portal, plus a named coordinator who answers when something changes.",
+  },
+]
+
+export function Home() {
+  return (
+    <>
+      <Hero />
+
+      <Section>
+        <SectionHeading
+          eyebrow="What we move"
+          title="One freight partner, every mode"
+          description="Most shippers juggle a broker, a forwarder, and a warehouse that never talk to each other. We do all three, so your shipment has one owner from pickup to proof of delivery."
+        />
+
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {services.map((service) => (
+            <ServiceCard key={service.slug} service={service} />
+          ))}
+        </div>
+
+        <div className="mt-10 text-center">
+          <Button asChild variant="outline" size="lg" className="h-10 px-5">
+            <Link to="/services">
+              See what each service includes
+              <ArrowRight data-icon="inline-end" aria-hidden="true" />
+            </Link>
+          </Button>
+        </div>
+      </Section>
+
+      <Section muted>
+        <SectionHeading
+          eyebrow="How it works"
+          title="From first quote to proof of delivery"
+          description="Four steps, and you always know which one your freight is on."
+        />
+
+        <ol className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {steps.map((step, index) => {
+            const Icon = step.icon
+            return (
+              <li key={step.title} className="relative">
+                <div className="flex items-center gap-3">
+                  <span className="grid size-10 place-items-center rounded-lg bg-background text-brand ring-1 ring-border">
+                    <Icon className="size-5" aria-hidden="true" />
+                  </span>
+                  <span className="text-xs font-semibold tracking-[0.14em] text-muted-foreground uppercase">
+                    Step {index + 1}
+                  </span>
+                </div>
+                <h3 className="mt-4 text-base font-semibold">{step.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  {step.body}
+                </p>
+              </li>
+            )
+          })}
+        </ol>
+      </Section>
+
+      <Section>
+        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+          <SectionHeading
+            align="start"
+            eyebrow="Questions"
+            title="The things shippers ask us first"
+            description="If your question is not here, call the office — a coordinator picks up, not a queue."
+          />
+
+          <Accordion type="single" collapsible className="w-full">
+            {faqs.map((faq) => (
+              <AccordionItem key={faq.question} value={faq.question}>
+                <AccordionTrigger className="text-left text-base">
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionContent className="text-sm leading-relaxed text-muted-foreground">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </Section>
+
+      <CTASection />
+    </>
+  )
+}
