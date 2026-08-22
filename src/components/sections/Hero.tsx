@@ -39,17 +39,21 @@ export function Hero() {
       <div className="mx-auto w-full max-w-[1920px] px-6 pt-32 pb-20 sm:px-10 sm:pb-24 lg:px-16 xl:px-24">
         <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-3xl xl:max-w-5xl">
-            <p className="flex items-center gap-2.5 text-xs font-semibold tracking-[0.16em] text-white/75 uppercase">
+            <p className="reveal-right flex items-center gap-2.5 text-xs font-semibold tracking-[0.16em] text-white/75 uppercase [animation-delay:150ms]">
               <span
-                className="h-px w-8 bg-brand-gold"
+                className="reveal-rule h-px w-8 bg-brand-gold [animation-delay:420ms]"
                 aria-hidden="true"
               />
               {hero.eyebrow}
             </p>
 
-            <h1 className="mt-5 text-5xl leading-[0.95] font-semibold tracking-tight text-white text-balance [text-shadow:0_2px_20px_rgb(0_0_0/0.55)] sm:text-6xl lg:text-7xl xl:text-8xl">
+            <h1 className="font-heading mt-5 text-4xl leading-[0.98] font-semibold tracking-tight text-white text-balance [text-shadow:0_2px_20px_rgb(0_0_0/0.55)] sm:text-5xl lg:text-6xl xl:text-7xl">
               {hero.headline.map((line, i) => (
-                <span key={line} className="block">
+                <span
+                  key={line}
+                  className="reveal-right block"
+                  style={{ animationDelay: `${320 + i * 220}ms` }}
+                >
                   {i === hero.headline.length - 1 ? (
                     <span className="text-brand-cyan">{line}</span>
                   ) : (
@@ -59,15 +63,15 @@ export function Hero() {
               ))}
             </h1>
 
-            <p className="mt-6 max-w-2xl text-base leading-relaxed text-pretty text-white/85 [text-shadow:0_1px_12px_rgb(0_0_0/0.5)] sm:text-lg xl:text-xl">
+            <p className="reveal-right mt-6 max-w-2xl text-base leading-relaxed text-pretty text-white/85 [text-shadow:0_1px_12px_rgb(0_0_0/0.5)] [animation-delay:900ms] sm:text-lg xl:text-xl">
               {hero.subhead}
             </p>
 
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <div className="reveal-right mt-9 flex flex-col gap-3 [animation-delay:1150ms] sm:flex-row sm:items-center">
               <Button
                 asChild
                 size="lg"
-                className="h-12 w-full rounded-full bg-white px-7 text-base text-brand hover:bg-white/90 sm:w-auto"
+                className="h-12 w-full bg-white px-7 text-base text-brand hover:bg-white/90 sm:w-auto"
               >
                 <Link to={hero.primaryCta.to}>
                   {hero.primaryCta.label}
@@ -78,7 +82,7 @@ export function Hero() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="h-12 w-full rounded-full border-white/45 bg-transparent px-7 text-base text-white hover:bg-white/10 hover:text-white sm:w-auto dark:border-white/45 dark:bg-transparent dark:hover:bg-white/10"
+                className="h-12 w-full border-brand-gold bg-transparent px-7 text-base text-white hover:bg-brand-gold/15 hover:text-white sm:w-auto dark:border-brand-gold dark:bg-transparent dark:hover:bg-brand-gold/15"
               >
                 <Link to={hero.secondaryCta.to}>{hero.secondaryCta.label}</Link>
               </Button>

@@ -37,7 +37,7 @@ export function Navbar() {
         <Logo />
 
         <nav
-          className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 lg:flex"
+          className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-4 lg:flex xl:gap-8"
           aria-label="Main"
         >
           {navLinks.map((link) => (
@@ -47,14 +47,13 @@ export function Navbar() {
               end={link.to === "/"}
               className={({ isActive }) =>
                 cn(
-                  "rounded-md px-3.5 py-2 text-sm font-medium transition-colors",
-                  transparent
-                    ? isActive
-                      ? "text-white"
-                      : "text-white/75 hover:text-white"
-                    : isActive
-                      ? "text-foreground"
-                      : "text-muted-foreground hover:text-foreground"
+                  "rounded-md px-1 py-2 text-sm font-medium transition-colors",
+                  isActive &&
+                    "text-brand-gold underline decoration-brand-gold decoration-2 underline-offset-8",
+                  !isActive &&
+                    (transparent
+                      ? "text-white/75 hover:text-white"
+                      : "text-muted-foreground hover:text-foreground")
                 )
               }
             >
@@ -63,7 +62,7 @@ export function Navbar() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3 md:gap-6">
           <a
             href={`tel:${company.phones[0].tel}`}
             className={cn(
@@ -82,7 +81,7 @@ export function Navbar() {
             size="lg"
             variant={transparent ? "outline" : "default"}
             className={cn(
-              "hidden h-10 rounded-full px-5 md:inline-flex",
+              "hidden h-10 px-5 md:inline-flex",
               transparent &&
                 "border-white/50 bg-transparent text-white hover:bg-white/10 hover:text-white dark:border-white/50 dark:bg-transparent dark:hover:bg-white/10"
             )}
@@ -121,7 +120,7 @@ export function Navbar() {
                         cn(
                           "rounded-md px-3 py-2.5 text-sm font-medium transition-colors",
                           isActive
-                            ? "bg-muted text-foreground"
+                            ? "bg-muted text-brand-gold underline decoration-brand-gold decoration-2 underline-offset-4"
                             : "text-muted-foreground hover:bg-muted/60 hover:text-foreground"
                         )
                       }
@@ -131,7 +130,7 @@ export function Navbar() {
                   </SheetClose>
                 ))}
                 <SheetClose asChild>
-                  <Button asChild size="lg" className="mt-3 w-full rounded-full">
+                  <Button asChild size="lg" className="mt-3 w-full">
                     <Link to="/contact">Get a Quote</Link>
                   </Button>
                 </SheetClose>

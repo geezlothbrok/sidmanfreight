@@ -15,7 +15,7 @@ export function CTASection({
     <section className="bg-brand text-brand-foreground">
       <div className="mx-auto w-full max-w-6xl px-5 py-16 sm:py-20">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
+          <h2 className="font-heading text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
             {title}
           </h2>
           <p className="mt-4 text-base leading-relaxed text-pretty opacity-90">

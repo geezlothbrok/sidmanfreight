@@ -9,7 +9,7 @@ export function NotFound() {
       <p className="text-xs font-semibold tracking-[0.14em] text-brand uppercase">
         Error 404
       </p>
-      <h1 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">
+      <h1 className="font-heading mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">
         This one went to the wrong terminal
       </h1>
       <p className="mt-5 max-w-md text-base leading-relaxed text-muted-foreground">
