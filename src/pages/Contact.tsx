@@ -64,12 +64,12 @@ const contactDetails = [
     value: phone.display,
     href: `tel:${phone.tel}`,
   })),
-  {
+  ...company.emails.map((email, index) => ({
     icon: Mail,
-    label: "Email",
-    value: company.email,
-    href: `mailto:${company.email}`,
-  },
+    label: index === 0 ? "Email" : "Alternate email",
+    value: email,
+    href: `mailto:${email}`,
+  })),
   {
     icon: MapPin,
     label: "Office",
@@ -124,7 +124,7 @@ export function Contact() {
     } catch {
       setStatus({
         state: "error",
-        message: `We could not send that just now. Please email ${company.email} or call ${company.phones[0].display}.`,
+        message: `We could not send that just now. Please email ${company.emails[0]} or call ${company.phones[0].display}.`,
       })
     }
   }
@@ -188,7 +188,7 @@ export function Contact() {
                   <Field
                     id="origin"
                     label="Origin"
-                    placeholder="City, port, or ZIP"
+                    placeholder="City or port"
                     value={values.origin}
                     onChange={update("origin")}
                     error={errors.origin}
@@ -196,7 +196,7 @@ export function Contact() {
                   <Field
                     id="destination"
                     label="Destination"
-                    placeholder="City, port, or ZIP"
+                    placeholder="City or port"
                     value={values.destination}
                     onChange={update("destination")}
                     error={errors.destination}

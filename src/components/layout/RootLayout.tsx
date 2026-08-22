@@ -5,14 +5,22 @@ import { Navbar } from "@/components/layout/Navbar"
 import { Footer } from "@/components/layout/Footer"
 
 export function RootLayout() {
-  const { pathname } = useLocation()
+  const { pathname, hash } = useLocation()
 
   // The landing page is a single full-bleed hero — no footer beneath it.
   const isLanding = pathname === "/"
 
   useEffect(() => {
+    // A hash link should land on its section, not be yanked back to the top.
+    if (hash) {
+      const target = document.querySelector(hash)
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "start" })
+        return
+      }
+    }
     window.scrollTo({ top: 0, behavior: "instant" })
-  }, [pathname])
+  }, [pathname, hash])
 
   return (
     <div className="flex min-h-dvh flex-col">

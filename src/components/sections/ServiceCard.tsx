@@ -21,10 +21,10 @@ export function ServiceCard({
   return (
     <Card className="h-full transition-shadow hover:shadow-md">
       <CardHeader>
-        <span className="mb-3 grid size-10 place-items-center rounded-lg bg-brand-muted text-brand dark:bg-brand/15">
-          <Icon className="size-5" aria-hidden="true" />
+        <span className="mb-4 grid size-16 place-items-center rounded-xl bg-brand-muted text-brand dark:bg-brand/20">
+          <Icon className="size-8" aria-hidden="true" />
         </span>
-        <CardTitle className="text-lg">{service.title}</CardTitle>
+        <CardTitle className="text-lg text-brand">{service.title}</CardTitle>
         <CardDescription className="leading-relaxed">
           {service.summary}
         </CardDescription>

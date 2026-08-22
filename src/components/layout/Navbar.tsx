@@ -14,6 +14,7 @@ import {
 import { Logo } from "@/components/layout/Logo"
 import { company, navLinks } from "@/data/site"
 import { cn } from "@/lib/utils"
+import { pageContainer } from "@/lib/layout"
 
 export function Navbar() {
   const { pathname } = useLocation()
@@ -33,7 +34,7 @@ export function Navbar() {
           : "sticky border-b border-border/80 bg-background/85 backdrop-blur-md"
       )}
     >
-      <div className="mx-auto flex h-20 w-full max-w-[1920px] items-center justify-between gap-4 px-6 sm:px-10 lg:px-16 xl:px-24">
+      <div className={cn(pageContainer, "flex h-20 items-center justify-between gap-4")}>
         <Logo />
 
         <nav

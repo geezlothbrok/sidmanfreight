@@ -112,6 +112,39 @@
   }
 }
 
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 2.75rem, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@layer utilities {
+  /* Applied up front so the section is hidden before it scrolls into view. */
+  .reveal-section {
+    opacity: 0;
+  }
+  .reveal-section-in {
+    animation-name: reveal-up;
+    animation-duration: 1.3s;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    animation-fill-mode: both;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-section {
+    opacity: 1;
+  }
+  .reveal-section-in {
+    animation: none;
+  }
+}
+
 @custom-variant dark (&:is(.dark *));
 
 :root {
@@ -257,5 +290,20 @@
   }
   html {
     @apply font-sans;
+  }
+
+  /*
+   * Hide the scrollbar chrome while leaving scrolling itself untouched —
+   * wheel, trackpad, keyboard, and touch all still work.
+   */
+  html,
+  body {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* legacy Edge */
+  }
+
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
   }
 }

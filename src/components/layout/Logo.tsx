@@ -1,10 +1,21 @@
 import { Link } from "react-router-dom"
 
 import logoUrl from "@/assets/images/sidman_logo1.png"
+import logoSolidUrl from "@/assets/images/logo-trimmed.jpg"
 import { company } from "@/data/site"
 import { cn } from "@/lib/utils"
 
-export function Logo({ className }: { className?: string }) {
+export function Logo({
+  className,
+  solid = false,
+}: {
+  className?: string
+  /**
+   * Uses the white-backed JPG instead of the transparent PNG. Reads as a clean
+   * plate on dark surfaces, where the navy wordmark would otherwise disappear.
+   */
+  solid?: boolean
+}) {
   return (
     <Link
       to="/"
@@ -15,10 +26,10 @@ export function Logo({ className }: { className?: string }) {
       aria-label={`${company.name} — home`}
     >
       <img
-        src={logoUrl}
+        src={solid ? logoSolidUrl : logoUrl}
         alt={company.name}
-        width={356}
-        height={243}
+        width={solid ? 800 : 356}
+        height={solid ? 536 : 243}
         className="h-10 w-auto sm:h-12"
       />
     </Link>

@@ -7,6 +7,8 @@ import heroImage1440 from "@/assets/images/land-1440.jpg"
 import heroImage960 from "@/assets/images/land-960.jpg"
 import { Button } from "@/components/ui/button"
 import { company, hero } from "@/data/site"
+import { cn } from "@/lib/utils"
+import { pageContainer } from "@/lib/layout"
 
 export function Hero() {
   const [videoOpen, setVideoOpen] = useState(false)
@@ -36,7 +38,7 @@ export function Hero() {
         className="absolute inset-0 -z-10 bg-gradient-to-b from-black/45 via-transparent to-black/45"
       />
 
-      <div className="mx-auto w-full max-w-[1920px] px-6 pt-32 pb-20 sm:px-10 sm:pb-24 lg:px-16 xl:px-24">
+      <div className={cn(pageContainer, "pt-32 pb-20 sm:pb-24")}>
         <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-3xl xl:max-w-5xl">
             <p className="reveal-right flex items-center gap-2.5 text-xs font-semibold tracking-[0.16em] text-white/75 uppercase [animation-delay:150ms]">
