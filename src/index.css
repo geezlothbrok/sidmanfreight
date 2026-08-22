@@ -1,6 +1,13 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+/*
+ * Inter comes from the package, not from src/assets/fonts/Inter. The package
+ * ships per-language subsets behind unicode-range, so this site downloads only
+ * the latin cut (~47 KB). Self-hosting the raw variable file would ship every
+ * script in one 340 KB request. Verified: only inter-latin-wght-normal.woff2
+ * is ever fetched.
+ */
 @import "@fontsource-variable/inter";
 
 /*
