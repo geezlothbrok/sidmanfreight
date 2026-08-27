@@ -18,6 +18,13 @@ export default defineConfig({
         target: 'http://localhost:3000',
         changeOrigin: true,
       },
+      // Staff portal API. Run the PHP backend alongside the dev server:
+      //   php -S 127.0.0.1:8000 -t ../backend
+      '/backend': {
+        target: 'http://127.0.0.1:8000',
+        changeOrigin: true,
+        rewrite: (p) => p.replace(/^\/backend/, ''),
+      },
     },
   },
 })

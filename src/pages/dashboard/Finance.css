@@ -1,0 +1,244 @@
+/* ==========================================================================
+   🎨 BRAND ACCENT (Sidman brand palette: navy primary, copper success, crimson error)
+   ========================================================================== */
+:root {
+  --clet-primary: #0A2A52;
+  --clet-primary-light: #e7edf5;
+  --clet-focus: #0A2A52;
+  --clet-success: #B87333;
+  --clet-error: #DC143C;
+  --clet-app-header-bg: #0A2A52;    /* navy top navbar */
+  --clet-app-header-color: #ffffff; /* white header text/icons */
+}
+
+/* ==========================================================================
+   🌈 COLORED METRIC ICONS
+   ========================================================================== */
+.clet-metric-card.metric-card-blue   { background: #1565c0; border: none; }
+.clet-metric-card.metric-card-green  { background: #8a5320; border: none; }
+.clet-metric-card.metric-card-red    { background: #a01030; border: none; }
+.clet-metric-card.metric-card-amber  { background: #b45309; border: none; }
+.clet-metric-card.metric-card-purple { background: #6d28d9; border: none; }
+.clet-metric-card.metric-card-teal   { background: #0f766e; border: none; }
+
+.metric-card-blue .clet-metric-card__icon,
+.metric-card-green .clet-metric-card__icon,
+.metric-card-red .clet-metric-card__icon,
+.metric-card-amber .clet-metric-card__icon,
+.metric-card-purple .clet-metric-card__icon,
+.metric-card-teal .clet-metric-card__icon,
+.metric-card-blue .clet-metric-card__label,
+.metric-card-green .clet-metric-card__label,
+.metric-card-red .clet-metric-card__label,
+.metric-card-amber .clet-metric-card__label,
+.metric-card-purple .clet-metric-card__label,
+.metric-card-teal .clet-metric-card__label,
+.metric-card-blue .clet-metric-card__value,
+.metric-card-green .clet-metric-card__value,
+.metric-card-red .clet-metric-card__value,
+.metric-card-amber .clet-metric-card__value,
+.metric-card-purple .clet-metric-card__value,
+.metric-card-teal .clet-metric-card__value,
+.metric-card-blue .clet-metric-card__description,
+.metric-card-green .clet-metric-card__description,
+.metric-card-red .clet-metric-card__description,
+.metric-card-amber .clet-metric-card__description,
+.metric-card-purple .clet-metric-card__description,
+.metric-card-teal .clet-metric-card__description,
+.metric-card-blue .clet-metric-card__trend,
+.metric-card-green .clet-metric-card__trend,
+.metric-card-red .clet-metric-card__trend,
+.metric-card-amber .clet-metric-card__trend,
+.metric-card-purple .clet-metric-card__trend,
+.metric-card-teal .clet-metric-card__trend {
+  color: #fff;
+}
+.metric-card-blue .clet-metric-card__label,
+.metric-card-green .clet-metric-card__label,
+.metric-card-red .clet-metric-card__label,
+.metric-card-amber .clet-metric-card__label,
+.metric-card-purple .clet-metric-card__label,
+.metric-card-teal .clet-metric-card__label {
+  opacity: 0.9;
+}
+.metric-card-blue .clet-metric-card__description,
+.metric-card-green .clet-metric-card__description,
+.metric-card-red .clet-metric-card__description,
+.metric-card-amber .clet-metric-card__description,
+.metric-card-purple .clet-metric-card__description,
+.metric-card-teal .clet-metric-card__description {
+  opacity: 0.8;
+}
+
+/* ==========================================================================
+   🏷️ HEADER BRAND
+   ========================================================================== */
+.ds-header-brand {
+  display: flex;
+  align-items: center;
+}
+.ds-header-logo {
+  height: 36px;
+  object-fit: contain;
+}
+
+/* ==========================================================================
+   📊 METRIC SECTIONS
+   ========================================================================== */
+.ds-metric-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 1.75rem;
+}
+.ds-metric-section-label {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #64748b;
+}
+.ds-metric-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.1rem;
+}
+
+/* ==========================================================================
+   📝 TRANSACTION FORM (inside modal)
+   ========================================================================== */
+.fin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* ==========================================================================
+   🏷️ TABLE CELL CHIPS & AMOUNTS
+   ========================================================================== */
+.fin-ref-pill {
+  background-color: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+.fin-amt-credit { color: #B87333; font-weight: 700; }
+.fin-amt-debit { color: #DC143C; font-weight: 700; }
+
+/* ==========================================================================
+   📎 ATTACHED DOCUMENT LINKS
+   ========================================================================== */
+.fin-doc-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.fin-doc-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #64748b;
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.3rem 0.6rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  background: #fff;
+  white-space: nowrap;
+  width: fit-content;
+  transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+}
+.fin-doc-link svg { flex-shrink: 0; font-size: 0.9rem; }
+.fin-doc-link-name {
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.fin-doc-link:hover {
+  color: #0A2A52;
+  border-color: #0A2A52;
+  background: #e7edf5;
+}
+.fin-doc-empty {
+  color: #94a3b8;
+  font-style: italic;
+  font-size: 0.85rem;
+}
+.fin-doc-count-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #334155;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.3rem 0.6rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  background: #fff;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+}
+.fin-doc-count-btn:hover {
+  color: #0A2A52;
+  border-color: #0A2A52;
+  background: #e7edf5;
+}
+
+/* ==========================================================================
+   🔎 VIEW-DETAILS DIALOG
+   ========================================================================== */
+.fin-view-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+.fin-view-details > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--clet-border);
+}
+.fin-view-details > div:last-child { border-bottom: none; }
+.fin-view-details span {
+  color: var(--clet-text-secondary);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.fin-view-details strong {
+  color: var(--clet-text);
+  font-size: 0.92rem;
+}
+
+/* Table header styling is left to the design system. The previous override
+   forced white header text but its copper background lost to a more specific
+   rule, leaving white-on-near-white headings. */
+
+/* Copper email in the header profile (trigger + dropdown) */
+/* Profile name/email colours left to the design system — the copper override
+   made the address clash and repeated the name's emphasis. */
+/* Profile name/email colours left to the design system — the copper override
+   made the address clash and repeated the name's emphasis. */
+
+/* ── Profile / account dialogs (shared ProfileMenu) ───────────────────────── */
+.profile-rows { display: grid; gap: 0.75rem; margin: 1.25rem 0 0; }
+.profile-rows > div { display: grid; grid-template-columns: 7.5rem 1fr; gap: 1rem; align-items: baseline; }
+.profile-rows dt { margin: 0; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--clet-text-secondary); }
+.profile-rows dd { margin: 0; font-size: 0.9rem; font-weight: 600; word-break: break-word; }
+.profile-form { display: grid; gap: 1rem; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--clet-border); }
+.profile-form button { justify-self: start; }
+.profile-msg { margin: 0; font-size: 0.85rem; color: var(--clet-success); }
+.profile-note { margin: 1.25rem 0 0; font-size: 0.85rem; line-height: 1.55; color: var(--clet-text-secondary); }
+
+/* AppHeader variant="primary" paints from --clet-primary, so the --clet-app-header-bg
+   token above does not reach it. Pin the bar to the same navy the active sidebar
+   link uses, so the two read as one colour. */
+.clet-app-header--primary { background-color: #0A2A52; }

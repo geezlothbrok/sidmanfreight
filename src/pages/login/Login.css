@@ -1,0 +1,173 @@
+/* Reset & Wrapper */
+.portal-login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  background-color: #f8f9fa;
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Central Login Card */
+.portal-login-card {
+  background: #ffffff;
+  padding: 2.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 450px;
+  text-align: center;
+}
+
+/* 🏡 Back to Homepage Link Layout */
+.portal-back-home-container {
+  text-align: left;
+  margin-bottom: 1.25rem;
+  margin-top: -0.5rem; /* Offsets padding inside the card for a tight, professional look */
+}
+
+.portal-back-home-link {
+  display: inline-flex;
+  align-items: center;
+  color: #64748b; /* Slate Gray matching description text */
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.portal-back-home-link:hover {
+  color: #0A2A52; /* Highlighting matches your premium orange accent */
+}
+
+/* Badge Header */
+.portal-badge {
+  display: inline-block;
+  background-color: #e0f2fe;
+  color: #0369a1;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+
+.portal-login-card h2 {
+  color: #1e293b;
+  font-size: 1.75rem;
+  margin: 0 0 0.5rem 0;
+  font-weight: 600;
+}
+
+.portal-login-card p {
+  color: #64748b;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 2rem;
+}
+
+/* Form Layout */
+.portal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Form Entry Groups */
+.portal-input-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 0.5rem;
+}
+
+.portal-input-group label {
+  color: #475569;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.portal-input-group input {
+  padding: 0.75rem 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 1rem;
+  color: #334155;
+  transition: all 0.2s ease;
+}
+
+.portal-input-group input:focus {
+  outline: none;
+  border-color: #0A2A52; /* Matches your premium orange brand accent */
+  box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.15);
+}
+
+/* Password visibility toggle */
+.portal-password-wrapper {
+  position: relative;
+  display: flex;
+}
+
+.portal-password-wrapper input {
+  width: 100%;
+  padding-right: 2.75rem;
+}
+
+.portal-password-toggle {
+  position: absolute;
+  right: 0.65rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  font-size: 1.1rem;
+  transition: color 0.15s ease;
+}
+
+.portal-password-toggle:hover {
+  color: #0A2A52;
+}
+
+/* Action Button */
+.portal-login-btn {
+  background-color: #0A2A52; /* Corporate Orange Accent */
+  color: #ffffff;
+  border: none;
+  padding: 0.85rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 0.5rem;
+}
+
+.portal-login-btn:hover {
+  background-color: #123c73;
+}
+
+.portal-login-btn:disabled {
+  background-color: #cbd5e1;
+  cursor: not-allowed;
+}
+
+/* Error Notice */
+.portal-error-message {
+  background-color: #fef2f2;
+  color: #991b1b;
+  padding: 0.75rem 1rem;
+  border-left: 4px solid #DC143C;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}

@@ -38,7 +38,7 @@ export function Navbar() {
         <Logo />
 
         <nav
-          className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-4 lg:flex xl:gap-8"
+          className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-2.5 lg:flex xl:gap-8"
           aria-label="Main"
         >
           {navLinks.map((link) => (
@@ -48,7 +48,7 @@ export function Navbar() {
               end={link.to === "/"}
               className={({ isActive }) =>
                 cn(
-                  "rounded-md px-1 py-2 text-sm font-medium transition-colors",
+                  "font-heading rounded-md px-1 py-2 text-sm font-medium transition-colors",
                   isActive &&
                     "text-brand-gold underline decoration-brand-gold decoration-2 underline-offset-8",
                   !isActive &&
@@ -67,7 +67,7 @@ export function Navbar() {
           <a
             href={`tel:${company.phones[0].tel}`}
             className={cn(
-              "hidden items-center gap-1.5 text-sm font-medium transition-colors xl:flex",
+              "hidden items-center gap-1.5 py-2 text-sm font-medium transition-colors min-[1340px]:flex",
               transparent
                 ? "text-white/80 hover:text-white"
                 : "text-muted-foreground hover:text-foreground"
@@ -76,6 +76,17 @@ export function Navbar() {
             <Phone className="size-3.5" aria-hidden="true" />
             {company.phones[0].display}
           </a>
+
+          <Button
+            asChild
+            size="lg"
+            className={cn(
+              "hidden h-10 bg-[#C1121F] px-5 text-white hover:bg-[#9E0E19] md:inline-flex",
+              transparent && "border-transparent"
+            )}
+          >
+            <Link to="/duty-calculator">Duty Calculator</Link>
+          </Button>
 
           <Button
             asChild
@@ -112,26 +123,40 @@ export function Navbar() {
                 <SheetTitle className="text-left">Menu</SheetTitle>
               </SheetHeader>
               <nav className="flex flex-col gap-1 px-4" aria-label="Mobile">
-                {navLinks.map((link) => (
-                  <SheetClose asChild key={link.to}>
-                    <NavLink
-                      to={link.to}
-                      end={link.to === "/"}
-                      className={({ isActive }) =>
-                        cn(
-                          "rounded-md px-3 py-2.5 text-sm font-medium transition-colors",
+                {navLinks.map((link) => {
+                  // Radix's Slot (via SheetClose asChild) merges className by
+                  // string concatenation, so NavLink's function form would be
+                  // stringified into the DOM rather than called. Resolve the
+                  // active state here and hand Slot a plain string.
+                  const isActive =
+                    link.to === "/"
+                      ? pathname === "/"
+                      : pathname.startsWith(link.to)
+
+                  return (
+                    <SheetClose asChild key={link.to}>
+                      <Link
+                        to={link.to}
+                        className={cn(
+                          "font-heading rounded-md px-3 py-2.5 text-sm font-medium transition-colors",
                           isActive
                             ? "bg-muted text-brand-gold underline decoration-brand-gold decoration-2 underline-offset-4"
                             : "text-muted-foreground hover:bg-muted/60 hover:text-foreground"
-                        )
-                      }
-                    >
-                      {link.label}
-                    </NavLink>
-                  </SheetClose>
-                ))}
+                        )}
+                        aria-current={isActive ? "page" : undefined}
+                      >
+                        {link.label}
+                      </Link>
+                    </SheetClose>
+                  )
+                })}
                 <SheetClose asChild>
-                  <Button asChild size="lg" className="mt-3 w-full">
+                  <Button asChild size="lg" className="mt-3 w-full bg-[#C1121F] text-white hover:bg-[#9E0E19]">
+                    <Link to="/duty-calculator">Duty Calculator</Link>
+                  </Button>
+                </SheetClose>
+                <SheetClose asChild>
+                  <Button asChild size="lg" className="mt-2 w-full">
                     <Link to="/contact">Get a Quote</Link>
                   </Button>
                 </SheetClose>
@@ -140,7 +165,7 @@ export function Navbar() {
                     <a
                       key={phone.tel}
                       href={`tel:${phone.tel}`}
-                      className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                      className="flex items-center gap-2 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       <Phone className="size-3.5" aria-hidden="true" />
                       {phone.display}

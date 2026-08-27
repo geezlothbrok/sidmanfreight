@@ -1,0 +1,5 @@
+# @rfdtech/components ships a prebuilt dist/, so the library works without this.
+# Its postinstall only wires up editor AI tooling (MCP server + skill docs);
+# pnpm 10+ requires build scripts to be approved explicitly.
+allowBuilds:
+  '@rfdtech/components': true

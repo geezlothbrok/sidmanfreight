@@ -1,0 +1,696 @@
+/* ==========================================================================
+   🧱 CORE DASHBOARD CONTAINERS & FONTS
+   ========================================================================== */
+.manager-dash-container {
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ==========================================================================
+   🎨 BRAND ACCENT (Sidman brand palette: navy primary, copper success, crimson error)
+   ========================================================================== */
+:root {
+  --clet-primary: #0A2A52;
+  --clet-primary-light: #e7edf5;
+  --clet-focus: #0A2A52;
+  --clet-success: #B87333;
+  --clet-error: #DC143C;
+  --clet-app-header-bg: #0A2A52;    /* navy top navbar */
+  --clet-app-header-color: #ffffff; /* white header text/icons */
+  --clet-sidebar-link-active-bg: #0A2A52;   /* navy active link */
+  --clet-sidebar-link-active-text: #ffffff; /* white text on navy */
+}
+
+/* ==========================================================================
+   🌈 COLORED METRIC ICONS
+   ========================================================================== */
+.clet-metric-card.metric-card-blue   { background: #1565c0; border: none; }
+.clet-metric-card.metric-card-green  { background: #8a5320; border: none; }
+.clet-metric-card.metric-card-red    { background: #a01030; border: none; }
+.clet-metric-card.metric-card-amber  { background: #b45309; border: none; }
+.clet-metric-card.metric-card-purple { background: #6d28d9; border: none; }
+.clet-metric-card.metric-card-teal   { background: #0f766e; border: none; }
+
+.metric-card-blue .clet-metric-card__icon,
+.metric-card-green .clet-metric-card__icon,
+.metric-card-red .clet-metric-card__icon,
+.metric-card-amber .clet-metric-card__icon,
+.metric-card-purple .clet-metric-card__icon,
+.metric-card-teal .clet-metric-card__icon,
+.metric-card-blue .clet-metric-card__label,
+.metric-card-green .clet-metric-card__label,
+.metric-card-red .clet-metric-card__label,
+.metric-card-amber .clet-metric-card__label,
+.metric-card-purple .clet-metric-card__label,
+.metric-card-teal .clet-metric-card__label,
+.metric-card-blue .clet-metric-card__value,
+.metric-card-green .clet-metric-card__value,
+.metric-card-red .clet-metric-card__value,
+.metric-card-amber .clet-metric-card__value,
+.metric-card-purple .clet-metric-card__value,
+.metric-card-teal .clet-metric-card__value,
+.metric-card-blue .clet-metric-card__description,
+.metric-card-green .clet-metric-card__description,
+.metric-card-red .clet-metric-card__description,
+.metric-card-amber .clet-metric-card__description,
+.metric-card-purple .clet-metric-card__description,
+.metric-card-teal .clet-metric-card__description,
+.metric-card-blue .clet-metric-card__trend,
+.metric-card-green .clet-metric-card__trend,
+.metric-card-red .clet-metric-card__trend,
+.metric-card-amber .clet-metric-card__trend,
+.metric-card-purple .clet-metric-card__trend,
+.metric-card-teal .clet-metric-card__trend {
+  color: #fff;
+}
+.metric-card-blue .clet-metric-card__label,
+.metric-card-green .clet-metric-card__label,
+.metric-card-red .clet-metric-card__label,
+.metric-card-amber .clet-metric-card__label,
+.metric-card-purple .clet-metric-card__label,
+.metric-card-teal .clet-metric-card__label {
+  opacity: 0.9;
+}
+.metric-card-blue .clet-metric-card__description,
+.metric-card-green .clet-metric-card__description,
+.metric-card-red .clet-metric-card__description,
+.metric-card-amber .clet-metric-card__description,
+.metric-card-purple .clet-metric-card__description,
+.metric-card-teal .clet-metric-card__description {
+  opacity: 0.8;
+}
+
+/* ==========================================================================
+   📊 METRIC CARD ROW
+   ========================================================================== */
+.mgr-metric-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.mgr-metric-section-label {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--clet-text-secondary);
+}
+.mgr-metric-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.mgr-metric-grid > * {
+  flex: 1 1 220px;
+}
+.mgr-value-negative { color: var(--clet-error); }
+.mgr-value-positive { color: var(--clet-success); }
+
+/* ==========================================================================
+   📎 ATTACHED DOCUMENT LINKS
+   ========================================================================== */
+.mgr-doc-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.mgr-doc-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--clet-text-secondary);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.3rem 0.6rem;
+  border-radius: 8px;
+  border: 1px solid var(--clet-border);
+  background: var(--clet-bg);
+  white-space: nowrap;
+  width: fit-content;
+  transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+}
+.mgr-doc-link svg { flex-shrink: 0; font-size: 0.9rem; }
+.mgr-doc-link-name {
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.mgr-doc-link:hover {
+  color: var(--clet-primary);
+  border-color: var(--clet-primary);
+  background: var(--clet-primary-light);
+}
+.mgr-doc-empty {
+  color: var(--clet-text-secondary);
+  font-style: italic;
+  font-size: 0.85rem;
+}
+.mgr-doc-count-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--clet-text);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.3rem 0.6rem;
+  border-radius: 8px;
+  border: 1px solid var(--clet-border);
+  background: var(--clet-bg);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+}
+.mgr-doc-count-btn:hover {
+  color: var(--clet-primary);
+  border-color: var(--clet-primary);
+  background: var(--clet-primary-light);
+}
+
+/* ==========================================================================
+   📐 SIDEBAR NAV SIZE OVERRIDES (bigger icons + labels than library default)
+   ========================================================================== */
+.clet-sidebar__link {
+  font-size: 1rem;
+  padding: 12px 14px;
+}
+.clet-sidebar__link-icon {
+  width: 26px;
+  height: 26px;
+  font-size: 1.35rem;
+}
+.mgr-sidebar-logo {
+  max-width: 100%;
+  height: 36px;
+  object-fit: contain;
+}
+
+/* ==========================================================================
+   🔄 REFRESH BUTTON SPIN
+   ========================================================================== */
+@keyframes mgr-spin {
+  to { transform: rotate(360deg); }
+}
+.mgr-spin {
+  animation: mgr-spin 0.7s linear infinite;
+}
+
+/* ==========================================================================
+   🏗️ SPLIT GRID MANAGEMENT LAYOUTS & FORMS
+   ========================================================================== */
+.mgr-split-layout {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+.mgr-finances-row {
+  display: grid;
+  grid-template-columns: 1fr 440px;
+  gap: 2rem;
+  align-items: start;
+}
+.mgr-panel-form {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.mgr-panel-form h3 {
+  margin: 0 0 0.5rem 0;
+  color: #1e293b;
+  border-bottom: 2px solid #0A2A52;
+  padding-bottom: 0.4rem;
+}
+.mgr-panel-form--in-dialog {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.mgr-view-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+.mgr-view-details > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--clet-border);
+}
+.mgr-view-details > div:last-child { border-bottom: none; }
+.mgr-view-details span {
+  color: var(--clet-text-secondary);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.mgr-view-details strong {
+  color: var(--clet-text);
+  font-size: 0.92rem;
+}
+.mgr-panel-form input, .mgr-panel-form select, .mgr-panel-form textarea { 
+  padding: 0.65rem; 
+  border: 1px solid #cbd5e1; 
+  border-radius: 4px; 
+  font-size: 0.95rem; 
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.mgr-panel-form input:focus, .mgr-panel-form select:focus, .mgr-panel-form textarea:focus {
+  outline: none;
+  border-color: #0A2A52;
+  box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.15);
+}
+.mgr-panel-form button { 
+  background: #0A2A52; 
+  color: white; 
+  border: none; 
+  padding: 0.75rem; 
+  border-radius: 4px; 
+  font-weight: 600; 
+  cursor: pointer; 
+  box-shadow: 0 2px 4px rgba(255, 87, 34, 0.2);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.mgr-panel-form button:hover { 
+  background: #123c73; 
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(230, 74, 25, 0.3);
+}
+.mgr-panel-form button:active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+/* ==========================================================================
+   📋 DATA STORAGE GRID MASTER TABLES
+   ========================================================================== */
+.mgr-table-wrapper {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.mgr-table-wrapper h3 { 
+  margin: 0 0 1rem 0; 
+  color: #1e293b; 
+}
+table { 
+  width: 100%; 
+  border-collapse: collapse; 
+  text-align: left; 
+  font-size: 0.95rem; 
+}
+th, td { 
+  padding: 0.75rem 1rem; 
+  border-bottom: 1px solid #e2e8f0; 
+}
+/* bare th styling removed — the design system owns table headers */
+tbody tr {
+  transition: background-color 0.15s ease;
+}
+tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+/* ==========================================================================
+   🏷️ BADGES, FLOW STATUS & LEDGER ACCENTS
+   ========================================================================== */
+.badge { 
+  padding: 0.2rem 0.5rem; 
+  border-radius: 4px; 
+  font-size: 0.75rem; 
+  font-weight: 700; 
+  text-transform: uppercase; 
+}
+.badge.manager { background: #fef3c7; color: #d97706; }
+.badge.agent { background: #e0f2fe; color: #0369a1; }
+.status-active { 
+  color: #B87333; 
+  font-weight: 600; 
+  font-size: 0.85rem; 
+  text-transform: uppercase; 
+}
+
+.tx-badge.income { 
+  background: #f5e9dc; 
+  color: #8a5320; 
+  padding: 0.25rem 0.5rem; 
+  border-radius: 4px; 
+  font-size: 0.8rem; 
+  font-weight: bold;
+}
+.tx-badge.expense { 
+  background: #fbe1e6; 
+  color: #a01030; 
+  padding: 0.25rem 0.5rem; 
+  border-radius: 4px; 
+  font-size: 0.8rem; 
+  font-weight: bold;
+}
+
+.text-green { color: #B87333; font-weight: 600; }
+.text-red { color: #DC143C; font-weight: 600; }
+
+/* ==========================================================================
+   📢 NOTIFICATION NOTICES SYSTEM BANNERS
+   ========================================================================== */
+.mgr-banner { 
+  padding: 0.75rem 1rem; 
+  border-radius: 4px; 
+  font-weight: 500; 
+  margin-bottom: 1.5rem; 
+}
+.mgr-banner.success { background: #f5e9dc; color: #8a5320; border-left: 4px solid #B87333; }
+.mgr-banner.danger { background: #fbe1e6; color: #a01030; border-left: 4px solid #DC143C; }
+
+/* ==========================================================================
+   🚀 COMPONENT ACTION CONTROLS & CSV EXPORTERS
+   ========================================================================== */
+.mgr-export-btn {
+  background-color: #0284c7;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(2, 132, 199, 0.2);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.mgr-export-btn:hover { 
+  background-color: #0369a1; 
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(3, 105, 161, 0.25);
+}
+.mgr-export-btn:active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.act-btn {
+  border: none;
+  padding: 0.35rem 0.65rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.act-btn:hover { 
+  filter: brightness(0.95);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
+}
+.act-btn:active {
+  transform: translateY(1px) scale(0.96);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+.act-btn.check { background-color: #f5e9dc; color: #8a5320; }
+.act-btn.trash { background-color: #fbe1e6; color: #a01030; }
+
+.payroll-disburse-btn {
+  background-color: #B87333;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(22, 163, 74, 0.15);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.payroll-disburse-btn:hover { 
+  background-color: #8a5320; 
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(21, 128, 61, 0.25);
+}
+.payroll-disburse-btn:active {
+  transform: translateY(1px) scale(0.97);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* ==========================================================================
+   ✏️ INLINE EMPLOYEE EDITING DYNAMIC UTILITIES 
+   ========================================================================== */
+.row-editable-active {
+  background-color: #fffbeb !important; 
+  border-left: 4px solid #0A2A52;
+}
+
+.inline-table-input {
+  width: 100%;
+  padding: 0.4rem;
+  border: 1px solid #0A2A52;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  background: #fff;
+  transition: box-shadow 0.2s;
+}
+.inline-table-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.2);
+}
+
+.inline-table-input.short {
+  width: 90px;
+}
+
+.inline-table-select {
+  padding: 0.4rem;
+  border: 1px solid #0A2A52;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  background: #fff;
+}
+
+.act-btn.edit-trigger-btn {
+  background-color: #f1f5f9;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+}
+.act-btn.edit-trigger-btn:hover {
+  background-color: #e2e8f0;
+  color: #1e293b;
+}
+
+.act-btn.cancel {
+  background-color: #e2e8f0;
+  color: #475569;
+}
+.act-btn.cancel:hover {
+  background-color: #cbd5e1;
+}
+
+/* ==========================================================================
+   📱 DYNAMIC MOBILE PORT VIEW RESPONSIVE OVERRIDES (STACKED CARDS)
+   ========================================================================== */
+@media screen and (max-width: 992px) {
+  /* Drop form modules vertically above datasets instead of floating side-by-side */
+  .mgr-split-layout,
+  .mgr-finances-row {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .mgr-panel-form {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Header action blocks layout management */
+  .mgr-table-wrapper > div[style*="display: flex"] {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 1rem !important;
+    width: 100%;
+  }
+  .mgr-table-wrapper div[style*="gap: 0.5rem"] {
+    width: 100%;
+    flex-direction: column;
+    gap: 0.5rem !important;
+  }
+  .mgr-export-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* 🌟 MATRIX CARD SYSTEM OVERRIDE FOR TRUE MOBILE SCROLL STACKING */
+  .mgr-table-wrapper {
+    padding: 1rem;
+    background: transparent;
+    box-shadow: none;
+    border: none;
+  }
+
+  .mgr-table-wrapper table,
+  .mgr-table-wrapper thead,
+  .mgr-table-wrapper tbody,
+  .mgr-table-wrapper th,
+  .mgr-table-wrapper td,
+  .mgr-table-wrapper tr {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Completely mask standard table columns head row safely */
+  .mgr-table-wrapper thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  /* Package each separate dataset table item row structure into a mobile card module */
+  .mgr-table-wrapper tbody tr {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    margin-bottom: 1.25rem;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  }
+  .mgr-table-wrapper tbody tr:hover {
+    background-color: #ffffff;
+  }
+
+  /* Format data cells as horizontal pairs within the stacked card view */
+  .mgr-table-wrapper td {
+    text-align: right;
+    padding: 0.65rem 0.5rem;
+    border-bottom: 1px dashed #e2e8f0;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+  .mgr-table-wrapper td:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-top: 0.5rem;
+  }
+
+  /* 🌟 FIXED CLEAN LABEL ENGINE: Evaluates layout mappings dynamically 
+     via data-label attributes rather than non-standard :has(:contains()) code blocks */
+  .mgr-table-wrapper td::before {
+    content: attr(data-label);
+    font-weight: 700;
+    color: #475569;
+    text-align: left;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* Force right-alignment corrections inside functional inline dynamic tools */
+  .mgr-table-wrapper td div, 
+  .mgr-table-wrapper td blockquote {
+    justify-content: flex-end;
+    text-align: right;
+  }
+}
+/* Table header styling is left to the design system. The previous override
+   forced white header text but its copper background lost to a more specific
+   rule, leaving white-on-near-white headings. */
+
+/* Copper email in the header profile (trigger + dropdown) */
+/* Profile name/email colours left to the design system — the copper override
+   made the address clash and repeated the name's emphasis. */
+
+/* ── Profile / account dialogs (shared ProfileMenu) ───────────────────────── */
+.profile-rows { display: grid; gap: 0.75rem; margin: 1.25rem 0 0; }
+.profile-rows > div { display: grid; grid-template-columns: 7.5rem 1fr; gap: 1rem; align-items: baseline; }
+.profile-rows dt { margin: 0; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--clet-text-secondary); }
+.profile-rows dd { margin: 0; font-size: 0.9rem; font-weight: 600; word-break: break-word; }
+.profile-form { display: grid; gap: 1rem; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--clet-border); }
+.profile-form button { justify-self: start; }
+.profile-msg { margin: 0; font-size: 0.85rem; color: var(--clet-success); }
+.profile-note { margin: 1.25rem 0 0; font-size: 0.85rem; line-height: 1.55; color: var(--clet-text-secondary); }
+
+/* Sidebar wordmark replacing the design system's default footer branding. */
+.mgr-sidebar-wordmark {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: currentColor;
+  opacity: 0.9;
+}
+
+/* AppHeader variant="primary" paints from --clet-primary, so the --clet-app-header-bg
+   token above does not reach it. Pin the bar to the same navy the active sidebar
+   link uses, so the two read as one colour. */
+.clet-app-header--primary { background-color: #0A2A52; }
+
+/* ── Invoice generator ────────────────────────────────────────────────────── */
+.inv-amount { font-variant-numeric: tabular-nums; font-weight: 600; }
+.inv-row-actions { display: flex; gap: 0.15rem; justify-content: flex-end; }
+.inv-dialog { max-width: 60rem; width: 92vw; max-height: 88vh; overflow-y: auto; }
+.inv-form { display: grid; gap: 1.5rem; margin-top: 1.25rem; }
+.inv-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); }
+.inv-section { display: grid; gap: 0.75rem; }
+.inv-section-title {
+  margin: 0; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--clet-primary);
+  border-bottom: 2px solid var(--clet-border); padding-bottom: 0.4rem;
+}
+.inv-edit-table { width: 100%; border-collapse: collapse; }
+.inv-edit-table th {
+  text-align: left; font-size: 0.65rem; text-transform: uppercase;
+  letter-spacing: 0.05em; color: var(--clet-text-secondary); padding: 0 0 0.35rem;
+}
+.inv-edit-table td { padding: 0.2rem 0.3rem 0.2rem 0; vertical-align: middle; }
+.inv-edit-table td:nth-child(2), .inv-edit-table td:nth-child(3) { width: 7.5rem; }
+.inv-edit-table td:nth-child(4) { width: 7rem; }
+.inv-edit-table td:last-child { width: 2.5rem; }
+.inv-amount-cell { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+.inv-totals {
+  display: grid; gap: 0.4rem; margin: 0; padding: 1rem 1.25rem;
+  background: var(--clet-bg); border-radius: 0.65rem; justify-self: end; min-width: 20rem;
+}
+.inv-totals > div { display: flex; justify-content: space-between; gap: 2rem; font-size: 0.85rem; }
+.inv-totals dt { color: var(--clet-text-secondary); }
+.inv-totals dd { margin: 0; font-variant-numeric: tabular-nums; font-weight: 600; }
+.inv-totals .tot { padding-top: 0.4rem; border-top: 1px solid var(--clet-border); font-size: 0.95rem; }
+.inv-totals .bal dd { color: var(--clet-success); font-size: 1rem; }
+.inv-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+
+/* ── Period reports ───────────────────────────────────────────────────────── */
+.rpt-panel { display: grid; gap: 1.5rem; }
+.rpt-period { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); padding: 0 1.5rem 1.25rem; }
+.rpt-period-label { margin: 0 1.5rem 1.25rem; font-size: 0.85rem; color: var(--clet-text-secondary); }
+.rpt-kpis { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); }
+.rpt-two { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr)); }
+.rpt-bars { display: grid; gap: 0.6rem; padding: 0.25rem 1.5rem 1.5rem; }
+.rpt-bar { display: grid; grid-template-columns: 10rem 1fr 6.5rem; align-items: center; gap: 0.75rem; }
+.rpt-bar-label { font-size: 0.82rem; }
+.rpt-bar-track { height: 0.7rem; background: var(--clet-bg); border-radius: 0.2rem; overflow: hidden; }
+.rpt-bar-fill { display: block; height: 100%; background: var(--clet-primary); border-radius: 0.2rem; }
+.rpt-bar-fill.in { background: var(--clet-success); }
+.rpt-bar-fill.ex { background: var(--clet-error); }
+.rpt-bar-value { font-size: 0.82rem; font-weight: 700; text-align: right; font-variant-numeric: tabular-nums; }
+.rpt-bar-value em { font-style: normal; font-weight: 400; color: var(--clet-text-secondary); }
+.rpt-empty { margin: 0; font-size: 0.85rem; font-style: italic; color: var(--clet-text-secondary); }
+.rpt-cat-table { width: 100%; border-collapse: collapse; margin: 0 0 1rem; font-size: 0.82rem; }
+.rpt-cat-table th { text-align: left; padding: 0.5rem 1.5rem; font-size: 0.65rem;
+  text-transform: uppercase; letter-spacing: 0.05em; color: var(--clet-text-secondary); }
+.rpt-cat-table td { padding: 0.5rem 1.5rem; border-top: 1px solid var(--clet-border); }
+.rpt-cat-table .c { text-align: center; }
+.rpt-cat-table .n { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+
+.rpt-section-head { margin: 0.5rem 0 0; font-size: 0.95rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.06em; border-bottom: 2px solid var(--clet-primary);
+  padding-bottom: 0.5rem; }
+.rpt-section-head em { font-style: normal; font-weight: 400; font-size: 0.8rem; color: var(--clet-text-secondary); }
+.rpt-empty-pad { padding: 0 1.5rem 1.5rem; }

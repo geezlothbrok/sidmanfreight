@@ -112,6 +112,17 @@ export function Hero() {
           ) : null}
         </div>
 
+        {/*
+          Decorative wordmark, typed in from the bottom-right. aria-hidden because
+          the logo already announces the company name — this would only repeat it.
+        */}
+        <p
+          aria-hidden="true"
+          className="type-in-right font-heading pointer-events-none absolute right-6 bottom-6 hidden max-w-[calc(100%-3rem)] overflow-hidden text-xl font-semibold tracking-[0.25em] whitespace-nowrap text-white/30 uppercase [animation-delay:1700ms] sm:right-10 sm:bottom-8 md:block lg:right-16 lg:text-2xl xl:right-24 xl:text-3xl"
+        >
+          <span className="type-caret mr-2 inline-block text-brand-gold">|</span>
+          Sidman Freight Consult
+        </p>
       </div>
 
       {videoOpen && hero.videoUrl ? (

@@ -6,6 +6,7 @@ import { PageHeader } from "@/components/sections/PageHeader"
 import { Button } from "@/components/ui/button"
 import { partners, company } from "@/data/site"
 import partnersBg from "@/assets/images/services-1600.jpg"
+import partnersHeaderBg from "@/assets/images/partners-1600.jpg"
 
 export function Partners() {
   return (
@@ -21,6 +22,10 @@ export function Partners() {
       />
 
       <PageHeader
+        backgroundImage={partnersHeaderBg}
+        overlayClassName="opacity-[0.50]"
+        paddingClassName="pt-24 pb-14 sm:pt-28 sm:pb-16 lg:pt-32 lg:pb-20"
+        eyebrowClassName="text-white"
         eyebrow={partners.eyebrow}
         title={partners.title}
         description={partners.intro}

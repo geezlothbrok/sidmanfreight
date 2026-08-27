@@ -10,6 +10,7 @@ import { PageHeader } from "@/components/sections/PageHeader"
 import { Section } from "@/components/sections/Section"
 import { company } from "@/data/site"
 import { cn } from "@/lib/utils"
+import contactBg from "@/assets/images/contactus-1600.jpg"
 
 type FormValues = {
   name: string
@@ -28,6 +29,16 @@ type Status =
   | { state: "submitting" }
   | { state: "success" }
   | { state: "error"; message: string }
+
+/**
+ * Contact submissions go to the PHP backend's `contact` action, which relays
+ * them over SMTP from the company mailbox. In dev, vite.config.ts proxies
+ * /backend to the local PHP server.
+ */
+const CONTACT_ENDPOINT =
+  import.meta.env.VITE_API_URL
+    ? `${import.meta.env.VITE_API_URL}?action=contact`
+    : "/backend/manager_api.php?action=contact"
 
 const emptyForm: FormValues = {
   name: "",
@@ -109,14 +120,41 @@ export function Contact() {
     setStatus({ state: "submitting" })
 
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
-      })
+      // The PHP backend sends this through the company's own mailbox over SMTP
+      // (backend/smtp_mailer.php) — no third-party email service, and the
+      // credentials never reach the browser.
+      const body = new FormData()
+      body.append("name", values.name)
+      body.append("email", values.email)
+      body.append("phone", values.phone)
+      body.append(
+        "subject",
+        values.origin && values.destination
+          ? `Quote request: ${values.origin} to ${values.destination}`
+          : "Website enquiry"
+      )
+      body.append(
+        "message",
+        [
+          values.companyName ? `Company: ${values.companyName}` : null,
+          values.origin ? `Origin: ${values.origin}` : null,
+          values.destination ? `Destination: ${values.destination}` : null,
+          "",
+          values.message,
+        ]
+          .filter((line) => line !== null)
+          .join("\n")
+      )
+      // Honeypot: the backend treats a filled `company` field as a bot and
+      // silently discards it. Deliberately left empty — the visible company
+      // input is sent inside the message above, not here.
+      body.append("company", "")
 
-      if (!response.ok) {
-        throw new Error(`Request failed with status ${response.status}`)
+      const response = await fetch(CONTACT_ENDPOINT, { method: "POST", body })
+      const data = (await response.json().catch(() => ({}))) as { error?: string }
+
+      if (!response.ok || data.error) {
+        throw new Error(data.error || `Request failed with status ${response.status}`)
       }
 
       setValues(emptyForm)
@@ -134,6 +172,8 @@ export function Contact() {
   return (
     <>
       <PageHeader
+        backgroundImage={contactBg}
+        titleClassName="text-brand-gold"
         eyebrow="Contact"
         title="Tell us what needs to move"
         description="Send the lane, the commodity, and the deadline. Most quotes come back the same business day, from the coordinator who would run the account."
@@ -287,7 +327,7 @@ export function Contact() {
                         {detail.href ? (
                           <a
                             href={detail.href}
-                            className="mt-1 block text-sm transition-colors hover:text-brand"
+                            className="mt-1 block py-1 text-sm break-all transition-colors hover:text-brand"
                           >
                             {detail.value}
                           </a>

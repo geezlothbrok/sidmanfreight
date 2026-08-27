@@ -226,7 +226,7 @@ export function About() {
                   <a
                     key={phone.tel}
                     href={`tel:${phone.tel}`}
-                    className="block text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    className="block py-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
                   >
                     {phone.display}
                   </a>
@@ -244,7 +244,7 @@ export function About() {
                   <a
                     key={email}
                     href={`mailto:${email}`}
-                    className="block text-sm break-all text-muted-foreground transition-colors hover:text-foreground"
+                    className="block py-1 text-sm break-all text-muted-foreground transition-colors hover:text-foreground"
                   >
                     {email}
                   </a>

@@ -13,22 +13,22 @@ export function Footer() {
   return (
     <footer className="border-t border-white/10 bg-[rgb(12,11,43)] text-white">
       <div className={cn(pageContainer, "py-14")}>
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4 [&>*]:min-w-0">
           <div className="lg:col-span-1">
             <Logo solid />
-            <p className="font-heading mt-4 max-w-xs text-sm leading-relaxed text-white/70">
+            <p className="font-heading mt-4 max-w-xs text-sm leading-relaxed text-brand-cyan">
               {company.description}
             </p>
           </div>
 
           <div>
             <h3 className="text-sm font-semibold text-white">Services</h3>
-            <ul className="mt-4 space-y-2.5">
+            <ul className="mt-3 space-y-0.5">
               {services.slice(0, 5).map((service) => (
                 <li key={service.slug}>
                   <Link
                     to="/services"
-                    className="font-heading text-sm text-white/70 transition-colors hover:text-white"
+                    className="font-heading inline-block py-1.5 text-sm text-white/70 transition-colors hover:text-brand-cyan"
                   >
                     {service.title}
                   </Link>
@@ -39,12 +39,12 @@ export function Footer() {
 
           <div>
             <h3 className="text-sm font-semibold text-white">Company</h3>
-            <ul className="mt-4 space-y-2.5">
+            <ul className="mt-3 space-y-0.5">
               {navLinks.map((link) => (
                 <li key={link.to}>
                   <Link
                     to={link.to}
-                    className="font-heading text-sm text-white/70 transition-colors hover:text-white"
+                    className="font-heading inline-block py-1.5 text-sm text-white/70 transition-colors hover:text-brand-cyan"
                   >
                     {link.label}
                   </Link>
@@ -67,7 +67,7 @@ export function Footer() {
                   <Phone className="size-4 shrink-0" aria-hidden="true" />
                   <a
                     href={`tel:${phone.tel}`}
-                    className="transition-colors hover:text-white"
+                    className="inline-block py-1 transition-colors hover:text-brand-cyan"
                   >
                     {phone.display}
                   </a>
@@ -78,7 +78,7 @@ export function Footer() {
                   <Mail className="size-4 shrink-0" aria-hidden="true" />
                   <a
                     href={`mailto:${email}`}
-                    className="transition-colors hover:text-white"
+                    className="inline-block py-1 break-all transition-colors hover:text-brand-cyan"
                   >
                     {email}
                   </a>
