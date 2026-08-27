@@ -1,0 +1,27 @@
+# Backend container for Vercel (OCI image run as a Vercel Function).
+# Vercel detects this file, builds the image, and routes traffic to it.
+# Same as ./Dockerfile (Render) except Vercel routes to port 80 by default.
+FROM php:8.2-cli
+
+# pdo_pgsql (to reach Neon) needs libpq headers to build.
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends libpq-dev \
+ && docker-php-ext-install pdo pdo_pgsql \
+ && apt-get purge -y --auto-remove \
+ && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+COPY . /app
+
+# Raise PHP's upload/post size limits (default upload_max_filesize is only 2M,
+# which rejects real receipts/manifests). conf.d is auto-loaded by PHP.
+COPY uploads.ini /usr/local/etc/php/conf.d/zz-uploads.ini
+
+ENV PHP_CLI_SERVER_WORKERS=4
+
+# Vercel routes to port 80 by default (override via $PORT). Vercel terminates
+# TLS in front of the container, so no HTTPS handling needed here.
+# Finance receipts are stored in the DB (base64), so PHP must accept uploads
+# above its stingy 2M default and hold the base64 payload in memory. Vercel's
+# platform still caps the request body (~4.5 MB), so keep real files under ~4 MB.
+CMD ["sh", "-c", "php -d upload_max_filesize=8M -d post_max_size=10M -d memory_limit=256M -d max_file_uploads=20 -S 0.0.0.0:${PORT:-80} -t /app"]

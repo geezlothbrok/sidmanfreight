@@ -1,0 +1,7 @@
+# Never bake secrets into the image — Render provides these as env vars.
+auth_config.php
+# Local-only artifacts.
+*.sql
+uploads/*
+!uploads/.gitkeep
+.DS_Store

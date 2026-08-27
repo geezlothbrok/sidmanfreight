@@ -1,0 +1,13 @@
+# Block direct web access to the backend's include-only files. These are meant
+# to be require()'d by api.php / manager_api.php, never requested over HTTP.
+# This is a safety net: if PHP ever fails to execute (misconfig) and starts
+# serving .php as plain text, auth_config.php's secrets (Neon URL, JWT secret,
+# password hashes) must NOT be readable. api.php and manager_api.php stay public.
+<FilesMatch "^(auth_config|auth_config\.example|db|auth_guard|jwt)\.php$">
+  Require all denied
+</FilesMatch>
+
+# Do not serve the raw SQL schema or any DB dumps.
+<FilesMatch "\.(sql)$">
+  Require all denied
+</FilesMatch>

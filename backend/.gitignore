@@ -1,0 +1,9 @@
+# Real secrets: DB URL, JWT key, password hashes, SMTP password.
+# Copy auth_config.example.php to auth_config.php and fill it in locally.
+auth_config.php
+
+# Uploaded documents — client data, never committed.
+uploads/*
+!uploads/.gitkeep
+.env.production
+.env
