@@ -22,9 +22,14 @@ import contactBg from "@/assets/images/contactus-1600.jpg"
  */
 const FUEL_TYPES = ["Petrol", "Diesel", "Hybrid", "Electric", "Other"] as const
 
-const ENDPOINT = import.meta.env.VITE_API_URL
-  ? `${import.meta.env.VITE_API_URL}?action=contact`
-  : "/backend/manager_api.php?action=contact"
+// See Contact.tsx: relative path is dev-only, proxied by vite.config.ts.
+const DUTY_API_BASE =
+  import.meta.env.VITE_API_URL ||
+  (window.location.hostname === "localhost"
+    ? "/backend/manager_api.php"
+    : "https://api.sidmanfreightconsult.com/manager_api.php")
+
+const ENDPOINT = `${DUTY_API_BASE}?action=contact`
 
 type Values = {
   make: string

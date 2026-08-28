@@ -35,10 +35,17 @@ type Status =
  * them over SMTP from the company mailbox. In dev, vite.config.ts proxies
  * /backend to the local PHP server.
  */
-const CONTACT_ENDPOINT =
-  import.meta.env.VITE_API_URL
-    ? `${import.meta.env.VITE_API_URL}?action=contact`
-    : "/backend/manager_api.php?action=contact"
+// Same resolution as the staff portal (Login/Dashboard/Finance): the relative
+// path is a DEV-ONLY convenience that vite.config.ts proxies. Off localhost it
+// must be the API subdomain — the frontend domain has no PHP, and the SPA
+// rewrite would return index.html with a 200, so response.json() would throw.
+const CONTACT_API_BASE =
+  import.meta.env.VITE_API_URL ||
+  (window.location.hostname === "localhost"
+    ? "/backend/manager_api.php"
+    : "https://api.sidmanfreightconsult.com/manager_api.php")
+
+const CONTACT_ENDPOINT = `${CONTACT_API_BASE}?action=contact`
 
 const emptyForm: FormValues = {
   name: "",

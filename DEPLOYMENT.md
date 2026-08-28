@@ -55,6 +55,32 @@ deployed. Copy the shape from `backend/.env.production.example`.
 | `SMTP_PASS` | the mailbox password — **no leading or trailing whitespace**, which fails auth silently |
 | `CONTACT_TO` | `info@sidmanfreightconsult.com` |
 
+### What ships inside the image
+
+`.dockerignore` is the only thing keeping non-runtime files out of the
+container, and that matters more than it looks: the image runs PHP's built-in
+server (`php -S`), so **there is no Apache and `backend/.htaccess` is inert**.
+Any non-PHP file left in `/app` is served as plaintext to anyone who asks.
+
+`.htaccess` is kept in the repo for a possible Apache/cPanel host, but it
+protects nothing on Vercel. The image therefore excludes `auth_config.php`,
+`.env*`, `*.sql`, `.htaccess`, the `Dockerfile`s, and both example files.
+`.env.production.example` in particular was being served at
+`/.env.production.example`, disclosing the manager and finance login addresses
+and the mailbox — no passwords, but the exact identities needed to target the
+staff portal.
+
+Confirm after any change to the build:
+
+```bash
+docker build -f Dockerfile.vercel -t sidman-api .
+docker run --rm --entrypoint sh sidman-api -c 'ls -a /app'
+```
+
+Only the PHP the API actually requires, `uploads/`, and `uploads.ini` should
+appear. PHP includes (`db.php`, `config.php`, …) are safe to leave in place —
+`php -S` executes them, so a direct request returns an empty body, not source.
+
 ### Why the two logins must differ
 
 `role_for_email()` checks the manager address first and returns on match. If
@@ -97,6 +123,8 @@ a login that appears to succeed and then immediately fails.
 The exact production path was exercised before deploying:
 
 - `docker build -f Dockerfile.vercel` succeeds
+- the container honours `$PORT` (Vercel routes to 80 by default)
+- no secrets, examples, or docs are present inside the image
 - the container, given only environment variables, reaches Neon over TLS
 - login returns `{"success":true,"role":"Manager"}` and a manager-only endpoint
   returns data

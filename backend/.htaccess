@@ -1,3 +1,10 @@
+# APACHE ONLY — this file does nothing on Vercel.
+#
+# The Vercel image runs PHP's built-in server (`php -S`), which never reads
+# .htaccess. On that host the equivalent protection comes from .dockerignore,
+# which keeps these files out of the image entirely. Kept here in case the
+# backend is ever served by Apache (cPanel), where the rules below do apply.
+
 # Block direct web access to the backend's include-only files. These are meant
 # to be require()'d by api.php / manager_api.php, never requested over HTTP.
 # This is a safety net: if PHP ever fails to execute (misconfig) and starts

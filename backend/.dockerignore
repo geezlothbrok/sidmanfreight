@@ -17,3 +17,14 @@ uploads/*
 .git
 .gitignore
 README.md
+
+# Docs and examples must not ship. Under `php -S` there is no Apache, so the
+# .htaccess deny rules below are inert and any non-PHP file in /app is served
+# as plaintext. .env.production.example is not secret, but it does disclose the
+# manager/finance login addresses and the mailbox — the exact identities an
+# attacker needs to target the staff portal.
+.env.production.example
+auth_config.example.php
+.htaccess
+Dockerfile
+Dockerfile.vercel
