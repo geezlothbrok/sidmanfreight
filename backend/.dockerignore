@@ -1,7 +1,19 @@
-# Never bake secrets into the image — Render provides these as env vars.
+# Never bake secrets into the image — the host provides these as environment
+# variables, and config.php reads the environment before falling back to a file.
 auth_config.php
-# Local-only artifacts.
+.env
+.env.production
+.env.*.local
+
+# Local-only artifacts. Schema is applied to the database out of band, not
+# shipped in the running container.
 *.sql
 uploads/*
 !uploads/.gitkeep
 .DS_Store
+*.log
+
+# Never ship the git metadata or docs into a runtime image.
+.git
+.gitignore
+README.md
