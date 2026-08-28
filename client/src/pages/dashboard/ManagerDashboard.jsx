@@ -171,11 +171,15 @@ const AUDIT_ACCESSORS = {
 };
 
 const API_URL = import.meta.env.VITE_API_URL || (window.location.hostname === 'localhost' ? '/backend/manager_api.php' : 'https://api.sidmanfreightconsult.com/manager_api.php');
-const ABSOLUTE_MANAGER_EMAIL = "manager@sidmanfreightconsult.com"; 
+// The manager's identity comes from the session, not a constant. The backend
+// decides who the manager is (MANAGER_EMAIL in the environment) and returns
+// role on login; hardcoding an address here meant that changing the deployed
+// MANAGER_EMAIL locked the real manager out of this screen.
 
 function ManagerDashboardInner() {
   const navigate = useNavigate();
-  const [checkingAuth, setCheckingAuth] = useState(true); 
+  const [checkingAuth, setCheckingAuth] = useState(true);
+  const [userEmail, setUserEmail] = useState(''); 
   
   const [activeTab, setActiveTab] = useState('overview');
   const [shipmentView, setShipmentView] = useState('pending');
@@ -240,9 +244,10 @@ function ManagerDashboardInner() {
 
   useEffect(() => {
     const user = getCurrentUser();
-    if (!user || user.email.toLowerCase() !== ABSOLUTE_MANAGER_EMAIL.toLowerCase()) {
+    if (!user || user.role !== 'Manager') {
       navigate('/login');
     } else {
+      setUserEmail(user.email);
       setCheckingAuth(false);
     }
   }, [navigate]);
@@ -309,7 +314,7 @@ function ManagerDashboardInner() {
   const handleSignOut = async () => {
     const logFd = new FormData();
     logFd.append('event_type', 'logout');
-    logFd.append('description', `${ABSOLUTE_MANAGER_EMAIL} logged out`);
+    logFd.append('description', `${userEmail} logged out`);
     await authFetch(`${API_URL}?action=log_event`, { method: 'POST', body: logFd }).catch(() => {});
     // Expire the session cookie server-side, then return to the login screen.
     await serverLogout(API_URL);
@@ -933,7 +938,7 @@ function ManagerDashboardInner() {
             />
             <ProfileMenu
               apiUrl={API_URL}
-              email={ABSOLUTE_MANAGER_EMAIL}
+              email={userEmail}
               role={'Manager'}
               onSignOut={handleSignOut}
             />

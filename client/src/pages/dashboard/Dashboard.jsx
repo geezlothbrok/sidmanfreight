@@ -21,8 +21,12 @@ import portalLogo from '../../assets/images/logo-trimmed.jpg';
 import './Dashboard.css';
 
 const DELIVERED_STATUSES = ['Delivered', 'Cleared At Port', 'Approved by Manager'];
-const MANAGER_EMAIL = 'manager@sidmanfreightconsult.com';
-const FINANCE_EMAIL = 'finance@sidmanfreightconsult.com';
+// The fixed manager/finance accounts are defined by the backend environment
+// (MANAGER_EMAIL / FINANCE_EMAIL) and identified to the client by `role` on the
+// session. Their addresses are deployment config, so they are never hardcoded
+// here — doing so silently locked those accounts out when the deployed values
+// differed.
+const FIXED_ROLES = ['Manager', 'Finance'];
 
 const SHIPMENT_STATUS_BADGE = {
   'Manifest Received': 'default',
@@ -101,6 +105,7 @@ const API_URL = import.meta.env.VITE_API_URL || (window.location.hostname === 'l
 function DashboardInner() {
   const navigate = useNavigate();
   const [userEmail, setUserEmail] = useState('');
+  const [userRole, setUserRole] = useState('');
   const [checkingAuth, setCheckingAuth] = useState(true);
 
   const [showLogShipment, setShowLogShipment] = useState(false);
@@ -127,7 +132,7 @@ function DashboardInner() {
 
   // Manager-only: lets the manager view any agent's manifest console
   // read-only, without logging out and back in as that agent.
-  const isManager = userEmail.toLowerCase() === MANAGER_EMAIL;
+  const isManager = userRole === 'Manager';
   const [agentsList, setAgentsList] = useState([]);
   const [viewingAgentEmail, setViewingAgentEmail] = useState('');
 
@@ -137,6 +142,7 @@ function DashboardInner() {
       navigate('/login');
     } else {
       setUserEmail(user.email);
+      setUserRole(user.role);
       setCheckingAuth(false);
     }
   }, [navigate]);
@@ -184,10 +190,7 @@ function DashboardInner() {
           // Manager/finance may also have employee rows for their own payroll
           // tracking — exclude them from the field-agent picker by email
           // (not just role text) so they never show up as an "agent" to view as.
-          setAgentsList(data.filter((emp) => {
-            const email = (emp.email || '').toLowerCase();
-            return (emp.role || 'Agent') !== 'Manager' && email !== MANAGER_EMAIL && email !== FINANCE_EMAIL;
-          }));
+          setAgentsList(data.filter((emp) => !FIXED_ROLES.includes(emp.role || 'Agent')));
         }
       } catch (err) {
         console.error("Error fetching agent roster:", err);

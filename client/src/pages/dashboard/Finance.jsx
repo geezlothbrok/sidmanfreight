@@ -24,8 +24,10 @@ import portalLogo from '../../assets/images/logo-trimmed.jpg';
 import './Finance.css';
 
 const API_URL = import.meta.env.VITE_API_URL || (window.location.hostname === 'localhost' ? '/backend/manager_api.php' : 'https://api.sidmanfreightconsult.com/manager_api.php');
-const ALLOWED_FINANCE_EMAIL = "finance@sidmanfreightconsult.com";
-const ADMIN_EMAIL = "manager@sidmanfreightconsult.com";
+// Who may open this screen. The backend returns `role` on login and
+// require_finance_email() accepts either role server-side, so the manager keeps
+// full access here. Addresses are deployment config and are never hardcoded.
+const FINANCE_ROLES = ['Finance', 'Manager'];
 
 const SWITCHER_APPS = [
   { id: 'executive', name: 'Executive Dashboard', icon: <FiGrid /> },
@@ -86,8 +88,9 @@ const SHIPMENT_ACCESSORS = {
 function FinanceInner() {
   const navigate = useNavigate();
   const [userEmail, setUserEmail] = useState('');
+  const [userRole, setUserRole] = useState('');
   const [checkingAuth, setCheckingAuth] = useState(true);
-  const isManager = userEmail.toLowerCase() === ADMIN_EMAIL.toLowerCase();
+  const isManager = userRole === 'Manager';
 
   const [transactions, setTransactions] = useState([]);
   const transactionsTable = useTableState({ paramPrefix: 'ledger', defaultPageSize: 10 });
@@ -123,9 +126,9 @@ function FinanceInner() {
       navigate('/login');
       return;
     }
-    const email = user.email.toLowerCase();
-    if (email === ALLOWED_FINANCE_EMAIL.toLowerCase() || email === ADMIN_EMAIL.toLowerCase()) {
+    if (FINANCE_ROLES.includes(user.role)) {
       setUserEmail(user.email);
+      setUserRole(user.role);
       setCheckingAuth(false);
     } else {
       navigate('/login');
