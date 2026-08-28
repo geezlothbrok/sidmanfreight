@@ -129,12 +129,38 @@ only if the API moves.
 
 ## 4. Domains
 
-- `sidmanfreightconsult.com` → frontend project
-- `api.sidmanfreightconsult.com` → backend project
+Live as of 2026-08-28. DNS is Namecheap BasicDNS; Private Email manages the MX
+records automatically, so only ever *add* host records — never edit or delete
+the mail rows.
 
-`ALLOWED_ORIGIN` must equal the frontend domain exactly, scheme included. The
-CORS check and the session cookie both depend on it, so a mismatch shows up as
-a login that appears to succeed and then immediately fails.
+| Host | Record | Points to |
+| --- | --- | --- |
+| `@` | A | `216.198.79.1` (Vercel) — 308-redirects to `www` |
+| `www` | CNAME | `efbe76eadcf25b14.vercel-dns-017.com.` — **canonical** |
+| `api` | CNAME | `8362604ee695e528.vercel-dns-017.com.` |
+
+### ALLOWED_ORIGIN must cover the canonical domain
+
+**Vercel makes `www` canonical, not the apex.** Adding both the apex and `www`
+to the frontend project makes Vercel 308-redirect the apex to `www`, so every
+browser request to the API originates from `https://www.sidmanfreightconsult.com`.
+
+`ALLOWED_ORIGIN` initially held only the apex, so the site loaded fine but
+`cors.php` sent no `Access-Control-Allow-Origin` header at all — exactly the
+failure this section warns about: a login that appears to succeed and then
+immediately fails, with nothing in the browser console pointing at the cause.
+
+It is now set to both, comma-separated, which survives a later change of
+canonical domain:
+
+```
+ALLOWED_ORIGIN=https://sidmanfreightconsult.com,https://www.sidmanfreightconsult.com
+```
+
+`cors.php` splits on commas and trims each entry. **Changing an environment
+variable does not affect the running container** — `config.php` reads the
+process environment per request, so the API must be redeployed before a new
+value takes effect.
 
 ---
 
