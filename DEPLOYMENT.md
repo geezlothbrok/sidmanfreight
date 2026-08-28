@@ -49,7 +49,11 @@ deployed. Copy the shape from `backend/.env.production.example`.
 | `FINANCE_PASSWORD_HASH` | as above, a different password |
 | `ALLOWED_ORIGIN` | `https://sidmanfreightconsult.com` — must match exactly |
 | `COOKIE_SAMESITE` | `None`, because the API is on a different subdomain |
-| `SMTP_HOST` / `SMTP_PORT` / `SMTP_USER` / `SMTP_PASS` / `CONTACT_TO` | the domain mailbox |
+| `SMTP_HOST` | `mail.privateemail.com` |
+| `SMTP_PORT` | `465` — implicit SSL. On 587 the mailer connects in plaintext and never issues STARTTLS, so the password would cross the wire in the clear. |
+| `SMTP_USER` | `info@sidmanfreightconsult.com` |
+| `SMTP_PASS` | the mailbox password — **no leading or trailing whitespace**, which fails auth silently |
+| `CONTACT_TO` | `info@sidmanfreightconsult.com` |
 
 ### Why the two logins must differ
 
@@ -105,6 +109,12 @@ docker run --rm -p 8099:80 --env-file .env.production sidman-api
 ```
 
 ---
+
+## Email — confirmed working
+
+`235 Authentication successful` against `mail.privateemail.com:465`, with TLS
+certificate verification on. Both public forms were sent end to end and
+returned success: the contact form and the vehicle duty enquiry.
 
 ## Still outstanding
 
