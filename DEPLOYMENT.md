@@ -33,6 +33,26 @@ Vercel detects `Dockerfile.vercel` and builds the container. No other build
 configuration is needed — the image already installs `pdo_pgsql` (required for
 Neon) and binds to `$PORT`.
 
+> **Leave Application Preset alone. Do NOT select "Other".**
+>
+> "Other" is not a neutral fallback — it tells Vercel *"static site, output
+> directory = project root"*. Vercel then never looks at `Dockerfile.vercel`
+> and instead publishes `backend/` as a folder of downloadable files: every
+> `.php` file is served as source with `content-type: application/x-httpd-php`,
+> and the API does nothing at all. Once Root Directory is `backend`, the preset
+> field goes blank on its own — that blank is correct, leave it.
+>
+> This happened on 2026-08-28 and the project had to be deleted. `.env` and
+> `auth_config.php` are gitignored so no credentials were exposed, but all PHP
+> source and the `.sql` schema files were public until it was torn down. Note
+> that Deployment Protection cannot save you here: on Hobby only "Standard
+> Protection" is available, and it deliberately exempts the production domain.
+>
+> **The deploy is correct when `GET /api.php` returns**
+> `content-type: application/json` **with a 401**, matching
+> `api.hotalogistics.com`. If it returns `application/x-httpd-php` and PHP
+> source, the preset is wrong — fix it before attaching a domain.
+
 ### Environment variables
 
 Set all 13 in **Settings → Environment Variables**. `config.php` reads the
