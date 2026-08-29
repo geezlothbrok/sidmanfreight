@@ -12,6 +12,7 @@ import { NotFound } from "@/pages/NotFound"
 // Staff portal, mirrored from the reference project. Plain JSX on the
 // @rfdtech/components design system, deliberately outside RootLayout so the
 // public site's navbar and footer never appear over it.
+import { Seo } from "@/components/Seo"
 import Login from "@/pages/login/Login"
 import Dashboard from "@/pages/dashboard/Dashboard"
 import ManagerDashboard from "@/pages/dashboard/ManagerDashboard"
@@ -20,6 +21,9 @@ import Finance from "@/pages/dashboard/Finance"
 export default function App() {
   return (
     <BrowserRouter>
+      {/* Outside <Routes> so it also covers the portal pages, which sit outside
+          RootLayout and must be served noindex. */}
+      <Seo />
       <Routes>
         <Route element={<RootLayout />}>
           <Route index element={<Home />} />
