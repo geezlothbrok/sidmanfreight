@@ -127,18 +127,19 @@ export default function ReportsPanel({ apiUrl }) {
       {data ? (
         <>
           <div className="rpt-kpis">
-            <MetricCard variant="soft" label="Shipments" value={ship.total ?? 0}
+            <MetricCard variant="soft" className="sidman-metric sidman-metric--blue" label="Shipments" value={ship.total ?? 0}
               description={`${ship.avg_per_month ?? 0} per month on average`} />
-            <MetricCard variant="soft" label="Clients Served" value={ship.clients ?? 0}
+            <MetricCard variant="soft" className="sidman-metric sidman-metric--purple" label="Clients Served" value={ship.clients ?? 0}
               description="Distinct clients in period" />
-            <MetricCard variant="soft" label="Income" value={money(fin.income)}
+            <MetricCard variant="soft" className="sidman-metric sidman-metric--green" label="Income" value={money(fin.income)}
               description={`${fin.income_count ?? 0} entries`} trend="up" />
-            <MetricCard variant="soft" label="Expenditure" value={money(fin.expense)}
+            <MetricCard variant="soft" className="sidman-metric sidman-metric--red" label="Expenditure" value={money(fin.expense)}
               description={`${fin.expense_count ?? 0} entries`} trend="down" />
-            <MetricCard variant="soft" label="Net Position" value={money(fin.net)}
+            {/* Net position takes its colour from its sign, so the tile reads
+                the same way the figure does. */}
+            <MetricCard variant="soft" className={`sidman-metric ${netNegative ? 'sidman-metric--red' : 'sidman-metric--teal'}`} label="Net Position" value={money(fin.net)}
               description={`${fin.margin_pct ?? 0}% margin`}
-              trend={netNegative ? 'down' : 'up'}
-              classNames={{ value: netNegative ? 'mgr-value-negative' : 'mgr-value-positive' }} />
+              trend={netNegative ? 'down' : 'up'} />
           </div>
 
           <Card>

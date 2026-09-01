@@ -984,18 +984,17 @@ function ManagerDashboardInner() {
               <div className="mgr-metric-section">
                 <h4 className="mgr-metric-section-label">Today</h4>
                 <div className="mgr-metric-grid">
-                  <MetricCard variant="soft" animate mark="nkyimkyim" icon={<FiPackage />} label="Shipments Logged Today" value={statsLoading ? '…' : stats.total_shipments_today} description="Since midnight" />
+                  <MetricCard variant="soft" animate className="sidman-metric sidman-metric--blue" mark="nkyimkyim" icon={<FiPackage />} label="Shipments Logged Today" value={statsLoading ? '…' : stats.total_shipments_today} description="Since midnight" />
                   <MetricCard
                     variant="soft"
                     animate
-                    mark="nyansapo"
+                    className={`sidman-metric ${netProfitTodayIsNegative ? 'sidman-metric--red' : 'sidman-metric--green'}`}
                     mark="osram-ne-nsroma"
                     icon={<FiCreditCard />}
                     label="Net Activity Today"
                     value={statsLoading ? '…' : netProfitTodayFormatted}
                     description="Income minus expenses, since midnight"
                     trend={netProfitTodayIsNegative ? 'down' : 'up'}
-                    classNames={{ value: netProfitTodayIsNegative ? 'mgr-value-negative' : 'mgr-value-positive' }}
                   />
                 </div>
               </div>
@@ -1003,18 +1002,18 @@ function ManagerDashboardInner() {
               <div className="mgr-metric-section">
                 <h4 className="mgr-metric-section-label">All-Time</h4>
                 <div className="mgr-metric-grid">
-                  <MetricCard variant="soft" animate mark="hwemudua" icon={<FiPackage />} label="Total Logged Shipments" value={statsLoading ? '…' : stats.total_shipments} description="All-time total" />
-                  <MetricCard variant="soft" animate mark="mate-masie" icon={<FiClock />} label="Pending Review" value={statsLoading ? '…' : pendingShipments.length} description="Awaiting manager approval" />
-                  <MetricCard variant="soft" animate mark="akoma-ntoaso" icon={<FiUserCheck />} label="Registered Field Agents" value={statsLoading ? '…' : stats.total_employees} description="Active accounts" />
+                  <MetricCard variant="soft" animate className="sidman-metric sidman-metric--navy" mark="hwemudua" icon={<FiPackage />} label="Total Logged Shipments" value={statsLoading ? '…' : stats.total_shipments} description="All-time total" />
+                  <MetricCard variant="soft" animate className="sidman-metric sidman-metric--amber" mark="mate-masie" icon={<FiClock />} label="Pending Review" value={statsLoading ? '…' : pendingShipments.length} description="Awaiting manager approval" />
+                  <MetricCard variant="soft" animate className="sidman-metric sidman-metric--purple" mark="akoma-ntoaso" icon={<FiUserCheck />} label="Registered Field Agents" value={statsLoading ? '…' : stats.total_employees} description="Active accounts" />
                   <MetricCard
                     variant="soft"
                     animate
+                    className={`sidman-metric ${netProfitIsNegative ? 'sidman-metric--red' : 'sidman-metric--green'}`}
                     icon={<FiCreditCard />}
                     label="Corporate Net Account Balance"
                     value={statsLoading ? '…' : netProfitFormatted}
                     description="Income minus expenses, all-time"
                     trend={netProfitIsNegative ? 'down' : 'up'}
-                    classNames={{ value: netProfitIsNegative ? 'mgr-value-negative' : 'mgr-value-positive' }}
                   />
                 </div>
               </div>

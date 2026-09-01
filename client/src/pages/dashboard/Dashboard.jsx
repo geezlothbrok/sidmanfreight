@@ -448,17 +448,17 @@ function DashboardInner() {
           <div className="ds-metric-section">
             <h4 className="ds-metric-section-label">Today</h4>
             <div className="ds-metric-grid ds-metric-grid--today">
-              <MetricCard variant="soft" animate mark="nkyimkyim" icon={<FiCalendar />} label="Shipments Logged Today" value={loggedTodayCount} description="Since midnight" />
+              <MetricCard variant="soft" animate className="sidman-metric sidman-metric--blue" mark="nkyimkyim" icon={<FiCalendar />} label="Shipments Logged Today" value={loggedTodayCount} description="Since midnight" />
             </div>
           </div>
 
           <div className="ds-metric-section">
             <h4 className="ds-metric-section-label">All-Time</h4>
             <div className="ds-metric-grid">
-              <MetricCard variant="soft" animate mark="hwemudua" icon={<FiPackage />} label="Total Shipments Logged" value={myShipments.length} description="All-time total" />
-              <MetricCard variant="soft" animate mark="mate-masie" icon={<FiClock />} label="Pending Review" value={pendingCount} description="Awaiting delivery/approval" />
-              <MetricCard variant="soft" animate mark="akofena" icon={<FiCheckCircle />} label="Delivered" value={deliveredCount} description="All-time total" />
-              <MetricCard variant="soft" animate mark="osram-ne-nsroma" icon={<FiCalendar />} label="Logged This Week" value={loggedThisWeekCount} description="Last 7 days" />
+              <MetricCard variant="soft" animate className="sidman-metric sidman-metric--navy" mark="hwemudua" icon={<FiPackage />} label="Total Shipments Logged" value={myShipments.length} description="All-time total" />
+              <MetricCard variant="soft" animate className="sidman-metric sidman-metric--amber" mark="mate-masie" icon={<FiClock />} label="Pending Review" value={pendingCount} description="Awaiting delivery/approval" />
+              <MetricCard variant="soft" animate className="sidman-metric sidman-metric--green" mark="akofena" icon={<FiCheckCircle />} label="Delivered" value={deliveredCount} description="All-time total" />
+              <MetricCard variant="soft" animate className="sidman-metric sidman-metric--teal" mark="osram-ne-nsroma" icon={<FiCalendar />} label="Logged This Week" value={loggedThisWeekCount} description="Last 7 days" />
             </div>
           </div>
 

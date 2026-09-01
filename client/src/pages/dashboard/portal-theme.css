@@ -110,51 +110,65 @@ tbody tr.row-editable-active {
 /* ==========================================================================
    🧱 CARDS & PANELS
    ==========================================================================
-   A hairline top rule in brand navy gives each panel a visible edge against
-   the page background and ties the staff screens to the public site, which
-   uses the same navy/copper pairing.
+   Panels stay borderless — the design system already separates them with a
+   radius and shadow, and an accent rule on every card turned the page into a
+   stack of lines. Only the title picks up the brand navy.
    ========================================================================== */
-.clet-card {
-  border-top: 3px solid var(--sidman-navy);
-}
-
 .clet-card .clet-card__title {
   color: var(--sidman-navy);
-}
-
-.mgr-table-wrapper {
-  border-top: 3px solid var(--sidman-navy);
 }
 
 /* ==========================================================================
    📊 METRIC CARDS
    ==========================================================================
-   These were already solid fills. The gradient is a small amount of depth in
-   the same hue — enough to separate the tiles from the flat panels behind them
-   without introducing a second colour per card.
+   The stat tiles were white on white, so a row of them read as one flat band
+   and nothing distinguished money from volume from things needing attention.
+
+   Colour here is assigned by MEANING, not decoration — green is money in, red
+   is money out, amber is a queue waiting on someone. That way the palette is
+   the same on every screen and a manager can read the row without labels.
+
+   Applied via `className` on <MetricCard>; the old `.metric-card-*` rules were
+   never referenced by any JSX and have been dropped.
    ========================================================================== */
-.clet-metric-card.metric-card-blue {
-  background: linear-gradient(135deg, #1565c0 0%, #0d47a1 100%);
-}
-.clet-metric-card.metric-card-green {
-  background: linear-gradient(135deg, #a0632a 0%, #7a4718 100%);
-}
-.clet-metric-card.metric-card-red {
-  background: linear-gradient(135deg, #b3163a 0%, #870d28 100%);
-}
-.clet-metric-card.metric-card-amber {
-  background: linear-gradient(135deg, #c2610a 0%, #92400e 100%);
-}
-.clet-metric-card.metric-card-purple {
-  background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);
-}
-.clet-metric-card.metric-card-teal {
-  background: linear-gradient(135deg, #0f766e 0%, #115e59 100%);
+/* Every gradient's LIGHTEST stop clears 4.5:1 against white, so the small
+   label and description text stay legible across the whole fill, not just at
+   the dark end. */
+.clet-metric-card.sidman-metric {
+  border: none;
+  color: #fff;
+  box-shadow: 0 6px 16px rgb(10 42 82 / 0.18);
 }
 
-.clet-metric-card[class*="metric-card-"] {
-  box-shadow: 0 2px 8px rgb(10 42 82 / 0.12);
+.sidman-metric .clet-metric-card__label,
+.sidman-metric .clet-metric-card__value,
+.sidman-metric .clet-metric-card__description,
+.sidman-metric .clet-metric-card__icon,
+.sidman-metric .clet-metric-card__trend {
+  color: #fff;
 }
+
+.sidman-metric .clet-metric-card__label,
+.sidman-metric .clet-metric-card__description {
+  /* Slightly held back so the value stays the loudest thing in the tile. */
+  color: rgb(255 255 255 / 0.9);
+}
+
+/* The Adinkra watermark is drawn in the text colour, so on a filled tile it
+   needs to drop to a whisper or it competes with the figure. */
+.sidman-metric .clet-metric-card__mark {
+  color: #fff;
+  opacity: 0.13;
+}
+
+.sidman-metric--blue   { background: linear-gradient(135deg, #1e6fd9 0%, #0d47a1 100%); }
+.sidman-metric--green  { background: linear-gradient(135deg, #158544 0%, #14532d 100%); }
+.sidman-metric--red    { background: linear-gradient(135deg, #d33d3d 0%, #991b1b 100%); }
+.sidman-metric--amber  { background: linear-gradient(135deg, #b06005 0%, #92400e 100%); }
+.sidman-metric--purple { background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%); }
+.sidman-metric--teal   { background: linear-gradient(135deg, #0d8278 0%, #115e59 100%); }
+.sidman-metric--navy   { background: linear-gradient(135deg, #17427a 0%, #0a2a52 100%); }
+.sidman-metric--copper { background: linear-gradient(135deg, #a4662d 0%, #7a4718 100%); }
 
 /* ==========================================================================
    💰 LEDGER FIGURES

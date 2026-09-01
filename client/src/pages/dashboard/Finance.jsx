@@ -451,18 +451,18 @@ function FinanceInner() {
           <div className="ds-metric-section">
             <h4 className="ds-metric-section-label">Today</h4>
             <div className="ds-metric-grid">
-              <MetricCard variant="soft" animate mark="epa" icon={<FiTrendingUp />} label="Gross Incoming Value" value={`GH₵${grossRevenueToday.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`} description="Since midnight" />
-              <MetricCard variant="soft" animate mark="okodee-mmowere" icon={<FiTrendingDown />} label="Operational Expense Outflow" value={`GH₵${operatingExpenditureToday.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`} description="Since midnight" />
-              <MetricCard variant="soft" animate mark="nyansapo" icon={<FiDollarSign />} label="Liquid Balance Pool" value={`GH₵${netMarginToday.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`} description={netMarginToday >= 0 ? 'Net positive today' : 'Net negative today'} />
+              <MetricCard variant="soft" animate className="sidman-metric sidman-metric--green" mark="epa" icon={<FiTrendingUp />} label="Gross Incoming Value" value={`GH₵${grossRevenueToday.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`} description="Since midnight" />
+              <MetricCard variant="soft" animate className="sidman-metric sidman-metric--red" mark="okodee-mmowere" icon={<FiTrendingDown />} label="Operational Expense Outflow" value={`GH₵${operatingExpenditureToday.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`} description="Since midnight" />
+              <MetricCard variant="soft" animate className={`sidman-metric ${netMarginToday < 0 ? 'sidman-metric--red' : 'sidman-metric--teal'}`} mark="nyansapo" icon={<FiDollarSign />} label="Liquid Balance Pool" value={`GH₵${netMarginToday.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`} description={netMarginToday >= 0 ? 'Net positive today' : 'Net negative today'} />
             </div>
           </div>
 
           <div className="ds-metric-section">
             <h4 className="ds-metric-section-label">All-Time</h4>
             <div className="ds-metric-grid">
-              <MetricCard variant="soft" animate mark="epa" icon={<FiTrendingUp />} label="Gross Incoming Value" value={`GH₵${grossRevenue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`} description="All revenue recorded" />
-              <MetricCard variant="soft" animate mark="okodee-mmowere" icon={<FiTrendingDown />} label="Operational Expense Outflow" value={`GH₵${operatingExpenditure.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`} description="All expenses recorded" />
-              <MetricCard variant="soft" animate mark="nyansapo" icon={<FiDollarSign />} label="Liquid Balance Pool" value={`GH₵${netMargin.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`} description={netMargin >= 0 ? 'Net positive' : 'Net negative'} />
+              <MetricCard variant="soft" animate className="sidman-metric sidman-metric--green" mark="epa" icon={<FiTrendingUp />} label="Gross Incoming Value" value={`GH₵${grossRevenue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`} description="All revenue recorded" />
+              <MetricCard variant="soft" animate className="sidman-metric sidman-metric--red" mark="okodee-mmowere" icon={<FiTrendingDown />} label="Operational Expense Outflow" value={`GH₵${operatingExpenditure.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`} description="All expenses recorded" />
+              <MetricCard variant="soft" animate className={`sidman-metric ${netMargin < 0 ? 'sidman-metric--red' : 'sidman-metric--teal'}`} mark="nyansapo" icon={<FiDollarSign />} label="Liquid Balance Pool" value={`GH₵${netMargin.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`} description={netMargin >= 0 ? 'Net positive' : 'Net negative'} />
             </div>
           </div>
 

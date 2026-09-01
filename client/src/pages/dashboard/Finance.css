@@ -14,65 +14,6 @@
 }
 
 /* ==========================================================================
-   🌈 COLORED METRIC ICONS
-   ========================================================================== */
-.clet-metric-card.metric-card-blue   { background: #1565c0; border: none; }
-.clet-metric-card.metric-card-green  { background: #8a5320; border: none; }
-.clet-metric-card.metric-card-red    { background: #a01030; border: none; }
-.clet-metric-card.metric-card-amber  { background: #b45309; border: none; }
-.clet-metric-card.metric-card-purple { background: #6d28d9; border: none; }
-.clet-metric-card.metric-card-teal   { background: #0f766e; border: none; }
-
-.metric-card-blue .clet-metric-card__icon,
-.metric-card-green .clet-metric-card__icon,
-.metric-card-red .clet-metric-card__icon,
-.metric-card-amber .clet-metric-card__icon,
-.metric-card-purple .clet-metric-card__icon,
-.metric-card-teal .clet-metric-card__icon,
-.metric-card-blue .clet-metric-card__label,
-.metric-card-green .clet-metric-card__label,
-.metric-card-red .clet-metric-card__label,
-.metric-card-amber .clet-metric-card__label,
-.metric-card-purple .clet-metric-card__label,
-.metric-card-teal .clet-metric-card__label,
-.metric-card-blue .clet-metric-card__value,
-.metric-card-green .clet-metric-card__value,
-.metric-card-red .clet-metric-card__value,
-.metric-card-amber .clet-metric-card__value,
-.metric-card-purple .clet-metric-card__value,
-.metric-card-teal .clet-metric-card__value,
-.metric-card-blue .clet-metric-card__description,
-.metric-card-green .clet-metric-card__description,
-.metric-card-red .clet-metric-card__description,
-.metric-card-amber .clet-metric-card__description,
-.metric-card-purple .clet-metric-card__description,
-.metric-card-teal .clet-metric-card__description,
-.metric-card-blue .clet-metric-card__trend,
-.metric-card-green .clet-metric-card__trend,
-.metric-card-red .clet-metric-card__trend,
-.metric-card-amber .clet-metric-card__trend,
-.metric-card-purple .clet-metric-card__trend,
-.metric-card-teal .clet-metric-card__trend {
-  color: #fff;
-}
-.metric-card-blue .clet-metric-card__label,
-.metric-card-green .clet-metric-card__label,
-.metric-card-red .clet-metric-card__label,
-.metric-card-amber .clet-metric-card__label,
-.metric-card-purple .clet-metric-card__label,
-.metric-card-teal .clet-metric-card__label {
-  opacity: 0.9;
-}
-.metric-card-blue .clet-metric-card__description,
-.metric-card-green .clet-metric-card__description,
-.metric-card-red .clet-metric-card__description,
-.metric-card-amber .clet-metric-card__description,
-.metric-card-purple .clet-metric-card__description,
-.metric-card-teal .clet-metric-card__description {
-  opacity: 0.8;
-}
-
-/* ==========================================================================
    🏷️ HEADER BRAND
    ========================================================================== */
 .ds-header-brand {
