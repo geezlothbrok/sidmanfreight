@@ -30,7 +30,10 @@ export function Logo({
         alt={company.name}
         width={solid ? 800 : 356}
         height={solid ? 536 : 243}
-        className="h-10 w-auto sm:h-12"
+        // Sized against the h-20 (80px) navbar, which is the tighter of the two
+        // placements — h-16 leaves 8px of breathing room top and bottom. Going
+        // beyond that crowds the bar rather than reading as a bigger mark.
+        className="h-14 w-auto sm:h-16"
       />
     </Link>
   )
