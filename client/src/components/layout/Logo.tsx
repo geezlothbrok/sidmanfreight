@@ -2,12 +2,14 @@ import { Link } from "react-router-dom"
 
 import logoUrl from "@/assets/images/sidman_logo1.png"
 import logoSolidUrl from "@/assets/images/logo-trimmed.jpg"
+import logoOnDarkUrl from "@/assets/images/sid-logo.png"
 import { company } from "@/data/site"
 import { cn } from "@/lib/utils"
 
 export function Logo({
   className,
   solid = false,
+  onDark = false,
 }: {
   className?: string
   /**
@@ -15,7 +17,18 @@ export function Logo({
    * plate on dark surfaces, where the navy wordmark would otherwise disappear.
    */
   solid?: boolean
+  /**
+   * The full lock-up, whose "Sidman" wordmark and tagline are WHITE. Only legible
+   * against a dark backdrop — the transparent navbar over the hero photo. On the
+   * light navbar of every other page it would be invisible, so the navy mark is
+   * still the default.
+   */
+  onDark?: boolean
 }) {
+  const src = onDark ? logoOnDarkUrl : solid ? logoSolidUrl : logoUrl
+  // Intrinsic dimensions per asset, so the browser reserves the right box and
+  // the nav does not reflow once the image decodes.
+  const [width, height] = onDark ? [800, 530] : solid ? [800, 536] : [356, 243]
   return (
     <Link
       to="/"
@@ -26,14 +39,14 @@ export function Logo({
       aria-label={`${company.name} — home`}
     >
       <img
-        src={solid ? logoSolidUrl : logoUrl}
+        src={src}
         alt={company.name}
-        width={solid ? 800 : 356}
-        height={solid ? 536 : 243}
-        // Sized against the h-20 (80px) navbar, which is the tighter of the two
-        // placements — h-16 leaves 8px of breathing room top and bottom. Going
-        // beyond that crowds the bar rather than reading as a bigger mark.
-        className="h-14 w-auto sm:h-16"
+        width={width}
+        height={height}
+        // Sized against the h-24 (96px) navbar, which is the tighter of the two
+        // placements — h-20 leaves 8px of clearance top and bottom. Growing the
+        // mark past this needs the bar to grow with it.
+        className="h-16 w-auto sm:h-20"
       />
     </Link>
   )

@@ -64,7 +64,7 @@ export function Services() {
 
       <section
         id="china-ghana"
-        className="relative isolate scroll-mt-20 overflow-hidden"
+        className="relative isolate scroll-mt-24 overflow-hidden"
       >
         <img
           src={chinaBg}

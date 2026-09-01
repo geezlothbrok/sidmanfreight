@@ -34,8 +34,11 @@ export function Navbar() {
           : "sticky border-b border-border/80 bg-background/85 backdrop-blur-md"
       )}
     >
-      <div className={cn(pageContainer, "flex h-20 items-center justify-between gap-4")}>
-        <Logo />
+      <div className={cn(pageContainer, "flex h-24 items-center justify-between gap-4")}>
+        {/* The full lock-up has a white wordmark, so it is only legible while the
+            navbar is transparent over the hero. Elsewhere the bar is light and
+            the navy mark is the one that reads. */}
+        <Logo onDark={transparent} />
 
         <nav
           className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-2.5 lg:flex xl:gap-8"
