@@ -1,0 +1,172 @@
+/* ==========================================================================
+   🎨 SHARED PORTAL COLOUR LAYER
+   ==========================================================================
+   Imported by ManagerDashboard.css, Dashboard.css and Finance.css so the three
+   staff screens stay in step. Those files each carry their own copy of the
+   :root brand tokens; this adds the colour that sits on top of them.
+
+   Everything here is scoped to a `clet-` class from the design system rather
+   than to bare `table` / `th` / `td` selectors. Vite bundles all CSS into one
+   stylesheet served on every route, so an unscoped `th { … }` rule would also
+   repaint anything on the public marketing site.
+   ========================================================================== */
+
+/* ==========================================================================
+   ✅ STATUS SEMANTICS
+   ==========================================================================
+   The brand palette had mapped --clet-success to copper (#B87333), so
+   "Delivered", "Duty Paid", "Customs Release" and "Cleared At Port" all
+   rendered brown — the same family as the amber warning states, which is
+   exactly the distinction a dispatcher needs to make at a glance.
+
+   Success is green here for that reason. Copper remains the brand accent
+   everywhere it is used deliberately (metric cards, ledger income, links).
+   ========================================================================== */
+:root {
+  --sidman-success: #15803d;
+  --sidman-success-soft: #dcfce7;
+  --sidman-warning: #b45309;
+  --sidman-warning-soft: #fef3c7;
+  --sidman-error: #b91c1c;
+  --sidman-error-soft: #fee2e2;
+  --sidman-info: #1565c0;
+  --sidman-info-soft: #dbeafe;
+
+  --sidman-navy: #0a2a52;
+  --sidman-navy-050: #f4f7fb;
+  --sidman-navy-100: #e7edf5;
+  --sidman-navy-200: #cfdcea;
+
+  --clet-success: var(--sidman-success);
+}
+
+/* Badge variants carry the shipment state in every table, so they are the one
+   place colour must be unambiguous. Tinted background + saturated text reads
+   at a glance without the solid blocks competing with the row content. */
+.clet-badge--success {
+  background: var(--sidman-success-soft);
+  color: #14532d;
+  border-color: #86efac;
+}
+.clet-badge--warning {
+  background: var(--sidman-warning-soft);
+  color: #78350f;
+  border-color: #fcd34d;
+}
+.clet-badge--error {
+  background: var(--sidman-error-soft);
+  color: #7f1d1d;
+  border-color: #fca5a5;
+}
+.clet-badge--primary {
+  background: var(--sidman-info-soft);
+  color: #0c3f7a;
+  border-color: #93c5fd;
+}
+.clet-badge--default {
+  background: var(--sidman-navy-100);
+  color: #33507a;
+  border-color: var(--sidman-navy-200);
+}
+
+/* ==========================================================================
+   📋 TABLES
+   ==========================================================================
+   The tables were white rows on a white card with hairline borders — readable,
+   but nothing separated the header from the body and nothing helped the eye
+   track across a wide row. A tinted header band, zebra striping and a stronger
+   hover fix all three without adding decoration that competes with the data.
+   ========================================================================== */
+.clet-table .clet-table__content thead th {
+  background: var(--sidman-navy-050);
+  color: var(--sidman-navy);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--sidman-navy-200);
+  white-space: nowrap;
+}
+
+/* Striping is deliberately faint. On a dense ledger the row fill has to stay
+   quieter than the badges and the debit/credit figures, or the table reads as
+   stripes first and data second. */
+.clet-table .clet-table__content tbody tr:nth-child(even) {
+  background-color: #fbfcfe;
+}
+
+.clet-table .clet-table__content tbody tr:hover {
+  background-color: var(--sidman-navy-100);
+}
+
+/* The row being edited in place should outrank both the stripe and the hover,
+   so it stays obvious which row a stray keystroke would land in. */
+.clet-table .clet-table__content tbody tr.row-editable-active,
+tbody tr.row-editable-active {
+  background-color: #fff7ed !important;
+  box-shadow: inset 3px 0 0 var(--sidman-warning);
+}
+
+/* ==========================================================================
+   🧱 CARDS & PANELS
+   ==========================================================================
+   A hairline top rule in brand navy gives each panel a visible edge against
+   the page background and ties the staff screens to the public site, which
+   uses the same navy/copper pairing.
+   ========================================================================== */
+.clet-card {
+  border-top: 3px solid var(--sidman-navy);
+}
+
+.clet-card .clet-card__title {
+  color: var(--sidman-navy);
+}
+
+.mgr-table-wrapper {
+  border-top: 3px solid var(--sidman-navy);
+}
+
+/* ==========================================================================
+   📊 METRIC CARDS
+   ==========================================================================
+   These were already solid fills. The gradient is a small amount of depth in
+   the same hue — enough to separate the tiles from the flat panels behind them
+   without introducing a second colour per card.
+   ========================================================================== */
+.clet-metric-card.metric-card-blue {
+  background: linear-gradient(135deg, #1565c0 0%, #0d47a1 100%);
+}
+.clet-metric-card.metric-card-green {
+  background: linear-gradient(135deg, #a0632a 0%, #7a4718 100%);
+}
+.clet-metric-card.metric-card-red {
+  background: linear-gradient(135deg, #b3163a 0%, #870d28 100%);
+}
+.clet-metric-card.metric-card-amber {
+  background: linear-gradient(135deg, #c2610a 0%, #92400e 100%);
+}
+.clet-metric-card.metric-card-purple {
+  background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);
+}
+.clet-metric-card.metric-card-teal {
+  background: linear-gradient(135deg, #0f766e 0%, #115e59 100%);
+}
+
+.clet-metric-card[class*="metric-card-"] {
+  box-shadow: 0 2px 8px rgb(10 42 82 / 0.12);
+}
+
+/* ==========================================================================
+   💰 LEDGER FIGURES
+   ==========================================================================
+   Income and expense are the two numbers on the finance screen that get
+   compared, so they carry the only colour in the numeric columns.
+   ========================================================================== */
+.tx-badge.income {
+  background: var(--sidman-success-soft);
+  color: #14532d;
+}
+.tx-badge.expense {
+  background: var(--sidman-error-soft);
+  color: #7f1d1d;
+}

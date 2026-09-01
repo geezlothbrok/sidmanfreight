@@ -1,3 +1,5 @@
+@import "./portal-theme.css";
+
 /* ==========================================================================
    🧱 CORE DASHBOARD CONTAINERS & FONTS
    ========================================================================== */
@@ -357,7 +359,7 @@ tbody tr:hover {
   font-weight: bold;
 }
 
-.text-green { color: #B87333; font-weight: 600; }
+.text-green { color: var(--sidman-success); font-weight: 600; }
 .text-red { color: #DC143C; font-weight: 600; }
 
 /* ==========================================================================
