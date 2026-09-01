@@ -88,6 +88,17 @@ export function Hero() {
               >
                 <Link to={hero.secondaryCta.to}>{hero.secondaryCta.label}</Link>
               </Button>
+              {/* Plain anchor, not a react-router Link: the tracker is a section
+                  on this same page, so this is an in-page jump rather than a
+                  route change. */}
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="h-12 w-full border-white/70 bg-transparent px-7 text-base text-white hover:bg-white/15 hover:text-white sm:w-auto dark:border-white/70 dark:bg-transparent dark:hover:bg-white/15"
+              >
+                <a href="#track">{hero.trackCta.label}</a>
+              </Button>
             </div>
           </div>
 

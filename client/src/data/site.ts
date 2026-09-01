@@ -50,6 +50,8 @@ export const hero = {
     "Road, ocean, and air cargo moved end to end — cleared by our own licensed brokers and tracked every step of the way.",
   primaryCta: { label: "Get a Quote", to: "/contact" },
   secondaryCta: { label: "Our services", to: "/services" },
+  /** In-page jump to the CargoTracker section (id="track") on the home page. */
+  trackCta: { label: "Track Your Cargo", href: "#track" },
   /** Set to a video URL to reveal the play card over the hero image. */
   videoUrl: null as string | null,
 } as const
