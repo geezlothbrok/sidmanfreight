@@ -131,7 +131,7 @@ export default function ProfileMenu({ apiUrl, email, role, onSignOut }) {
           <DialogOverlay />
           <DialogContent>
             <DialogTitle>My profile</DialogTitle>
-            <DialogDescription>Your account details on the staff portal.</DialogDescription>
+            <DialogDescription>Your account details on the operations portal.</DialogDescription>
 
             {loadError ? <p className="mgr-inline-error">{loadError}</p> : null}
 

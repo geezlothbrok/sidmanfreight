@@ -152,7 +152,7 @@ function require_authenticated_email() {
         $stmt = $conn->prepare("SELECT 1 FROM employees WHERE email = :email AND portal_access = 1 LIMIT 1");
         $stmt->execute([':email' => $email]);
         if (!$stmt->fetch()) {
-            auth_fail(403, "This account is not authorized to use the staff portal.");
+            auth_fail(403, "This account is not authorized to use the operations portal.");
         }
     }
 

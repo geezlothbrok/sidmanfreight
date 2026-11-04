@@ -33,7 +33,7 @@ function metaFor(pathname: string): Meta {
     // but a page that gets linked from elsewhere can still be indexed without
     // being crawled — only a noindex tag actually keeps it out of results.
     return {
-      title: `Staff Portal | ${ORG.name}`,
+      title: `Operations Portal | ${ORG.name}`,
       description: "",
       canonical: "",
       index: false,
