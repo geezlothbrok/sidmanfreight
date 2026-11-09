@@ -45,6 +45,11 @@ const SHIPMENT_STATUS_BADGE = {
   'Approved by Manager': 'success',
 };
 
+// Must match the CHECK constraints on shipments.regime / consignment_type
+// (backend/schema.sql) and the allow-lists in backend/api.php.
+const REGIMES = ['Import', 'Export', 'Warehousing', 'Transit', 'Freezones'];
+const CONSIGNMENT_TYPES = ['Vehicles', 'General Goods'];
+
 const SHIPMENT_STATUS_OPTIONS = [
   { value: 'Manifest Received', label: 'Manifest Received' },
   { value: 'Vessel Yet To Arrive', label: 'Vessel Yet To Arrive' },
